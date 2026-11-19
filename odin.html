@@ -12,70 +12,139 @@
 
     <style>
         :root {
-            --bg-color: #f8f9fa; --text-main: #1a1a1a; --text-muted: #666666;
-            --nav-bg: rgba(248, 249, 250, 0.95); --border-color: #e5e5e5; --card-bg: #ffffff;
-            --quote-border: #1a1a1a;
+            --bg-color: #f8f9fa;
+            --text-main: #1a1a1a;
+            --text-muted: #666666;
+            --nav-bg: rgba(248, 249, 250, 0.95);
+            --border-color: #e5e5e5;
+            --card-bg: #ffffff;
+            --accent: #1d4ed8;
+            --accent-hover: #1e40af;
+            --button-text: #ffffff;
+            --accent-light: rgba(29, 78, 216, 0.1);
         }
-        [data-theme="dark"] {
-            --bg-color: #0f172a; --text-main: #f8fafc; --text-muted: #94a3b8;
-            --nav-bg: rgba(15, 23, 42, 0.95); --border-color: #334155; --card-bg: #1e293b;
-            --quote-border: #f8fafc;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-main);
-            line-height: 1.8; transition: background-color 0.3s, color 0.3s;
-        }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; }
-        .container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
 
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --nav-bg: rgba(15, 23, 42, 0.95);
+            --border-color: #334155;
+            --card-bg: #1e293b;
+            --accent: #3b82f6;
+            --accent-hover: #60a5fa;
+            --button-text: #ffffff;
+            --accent-light: rgba(59, 130, 246, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+        /* NAVIGATION */
         nav {
-            position: fixed; top: 0; left: 0; right: 0; background: var(--nav-bg);
-            backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color);
+            position: fixed; top: 0; left: 0; right: 0;
+            background: var(--nav-bg); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
             z-index: 100; padding: 1.2rem 0; transition: background 0.3s, border-color 0.3s;
         }
         nav .container { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; }
         .nav-brand {
-            font-size: 0.85rem; font-weight: 600; color: var(--text-main);
-            text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s;
+            font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700;
+            color: var(--text-main); text-decoration: none; letter-spacing: 0.5px;
         }
-        .nav-brand:hover { color: var(--text-muted); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        .nav-links a {
+            font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-muted); text-decoration: none; transition: color 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
         .theme-toggle {
             background: none; border: 1px solid var(--border-color); color: var(--text-main);
-            padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.75rem;
-            font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;
+            padding: 0.4rem 1rem; border-radius: 50px; font-family: 'Inter', sans-serif;
+            font-size: 0.75rem; font-weight: 500; cursor: pointer; display: flex;
+            align-items: center; gap: 0.5rem; transition: all 0.2s;
         }
+        .theme-toggle:hover { background: var(--border-color); }
 
+        /* PAGE HEADER */
         .page-header { padding: 10rem 0 4rem; text-align: center; }
         .label {
             font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
             letter-spacing: 2px; color: var(--text-muted); margin-bottom: 1.5rem;
         }
-        .page-header h1 { font-size: clamp(3rem, 8vw, 4.5rem); line-height: 1.1; margin-bottom: 1rem; }
+        .page-header h1 { font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 1rem; }
+        .page-header h1 em { font-style: italic; font-weight: 400; }
         .subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem;
+            font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-muted); text-decoration: none; margin-bottom: 2rem; transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--text-main); }
+
+        /* STATUS BADGE */
         .status-badge {
-            display: inline-block; background: rgba(22, 163, 74, 0.1); color: #16a34a;
-            font-size: 0.75rem; font-weight: 600; padding: 0.4rem 1.2rem;
-            border-radius: 50px; letter-spacing: 0.5px;
+            display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            padding: 0.4rem 1rem; background: var(--accent-light); color: var(--accent);
+            border: 1px solid var(--accent); border-radius: 50px; margin-bottom: 1.5rem;
         }
 
+        /* CONTENT SECTION */
         .content-section { padding: 2rem 0 6rem; }
         .content-section h2 { font-size: 2rem; margin-bottom: 1.5rem; }
-        .content-section p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 2rem; }
+        .content-section p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+        
+        .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+        .detail-content h3 { font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; margin: 2rem 0 1rem; }
+        .detail-content ul { list-style: none; margin-bottom: 1.5rem; }
+        .detail-content li { position: relative; padding-left: 1.5rem; margin-bottom: 0.6rem; color: var(--text-muted); }
+        .detail-content li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
 
-        .why-box {
-            background: var(--card-bg); border: 1px solid var(--border-color);
-            border-radius: 8px; padding: 2.5rem; margin-bottom: 3rem;
+        /* MODULE CARDS */
+        .module-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+        .module {
+            padding: 1.5rem; background: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 8px; transition: all 0.3s; text-decoration: none; color: inherit;
+            display: block; position: relative; overflow: hidden;
         }
-        .why-box h3 { font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 1.5rem; }
-        .why-box ul { list-style: none; padding: 0; }
-        .why-box li { position: relative; padding-left: 1.5rem; margin-bottom: 1rem; font-size: 1rem; color: var(--text-muted); }
-        .why-box li::before { content: '—'; position: absolute; left: 0; color: var(--text-main); }
-        .why-box li strong { color: var(--text-main); font-weight: 500; }
+        .module:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .module .num-badge {
+            display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 1px;
+            color: var(--accent); margin-bottom: 0.5rem; text-transform: uppercase;
+        }
+        .module h4 { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+        .module p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin: 0; }
+        
+        .module.presentation {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--bg-color) 100%);
+            border-left: 4px solid var(--accent);
+        }
+        .presentation-tag {
+            display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.65rem;
+            font-weight: 600; text-transform: uppercase; padding: 0.2rem 0.5rem;
+            background: var(--accent-light); color: var(--accent); border-radius: 50px; margin-left: 0.4rem;
+        }
 
-        .quote-block { border-left: 3px solid var(--quote-border); padding-left: 1.5rem; margin: 3rem 0; }
-        .quote-block p { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic; color: var(--text-main); margin-bottom: 0; }
-
+        /* QUOTE & BUTTON */
+        .quote-section { text-align: center; padding: 4rem 0; border-top: 1px solid var(--border-color); }
+        .quote-text {
+            font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic;
+            color: var(--text-main); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;
+        }
         .btn {
             display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 2rem;
             font-size: 0.9rem; font-weight: 600; border-radius: 4px; text-decoration: none;
@@ -84,58 +153,162 @@
         }
         .btn:hover { transform: translateY(-2px); opacity: 0.9; }
 
-        footer { padding: 2rem 0; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+        footer { padding: 3rem 0; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .detail-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .page-header { padding: 7rem 0 3rem; }
+        }
     </style>
 </head>
 <body>
+
     <nav>
         <div class="container">
-            <a href="index.html" class="nav-brand"><i class="fas fa-arrow-left"></i> Back to home</a>
-            <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i> Theme</button>
+            <a href="index.html" class="nav-brand">Shon Biju</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="odin.html" class="active">Odin</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="certifications.html">Certifications</a></li>
+                <li><a href="class-activities.html">Activities</a></li>
+                <li><a href="homeworks.html">Homeworks</a></li>
+            </ul>
+            <button class="theme-toggle" id="theme-toggle">
+                <i class="fas fa-moon"></i> Theme
+            </button>
         </div>
     </nav>
 
     <header class="page-header container">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to home</a>
         <div class="label">Currently Learning · Full Stack JavaScript</div>
-        <h1>The Odin Project</h1>
+        <h1>The Odin <em>Project</em></h1>
         <p class="subtitle">A free, open-source full-stack web development curriculum. Building real projects, one lesson at a time.</p>
-        <div class="status-badge">Currently In Progress</div>
     </header>
 
     <section class="content-section container">
-        <h2>What is The Odin Project?</h2>
-        <p>The Odin Project is a free, open-source curriculum that teaches full-stack web development through hands-on projects. Rather than watching videos, you build real applications while following the curriculum.</p>
-        <p>I chose The Odin Project because it emphasizes practical skills. Every concept comes with a project that forces me to apply what I've learned.</p>
+        <div class="detail-grid">
+            <div class="detail-content">
+                <div class="status-badge"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Currently In Progress</div>
+                <h2>What is The Odin Project?</h2>
+                <p>The Odin Project is a free, open-source curriculum that teaches full-stack web development through hands-on projects. Rather than watching videos, you build real applications while following the curriculum.</p>
+                <p>I chose The Odin Project because it emphasizes practical skills. Every concept comes with a project that forces me to apply what I've learned.</p>
 
-        <div class="why-box">
-            <h3>Why It Works For Me</h3>
-            <ul>
-                <li><strong>Portfolio-ready projects</strong> — every lesson produces a real app</li>
-                <li><strong>Industry-relevant</strong> — teaches what actual developers use</li>
-                <li><strong>Community-driven</strong> — active Discord and open-source</li>
-                <li><strong>Free forever</strong> — no paywalls</li>
-            </ul>
+                <h3>Why It Works For Me</h3>
+                <ul>
+                    <li><strong>Portfolio-ready projects</strong> — every lesson produces a real app</li>
+                    <li><strong>Industry-relevant</strong> — teaches what actual developers use</li>
+                    <li><strong>Community-driven</strong> — active Discord and open-source</li>
+                    <li><strong>Free forever</strong> — no paywalls</li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="module-list" style="margin-top:0;">
+                    <a href="#" class="module presentation">
+                        <span class="num-badge">Track 01 <span class="presentation-tag"><i class="fas fa-file-powerpoint"></i> Presentation</span></span>
+                        <h4>Foundations</h4>
+                        <p>My presentation on HTML, CSS, Flexbox, and JavaScript basics — click to view slides</p>
+                    </a>
+                    <a href="https://www.theodinproject.com/paths/full-stack-javascript" target="_blank" rel="noopener" class="module">
+                        <span class="num-badge">Track 02</span>
+                        <h4>Full Stack JavaScript</h4>
+                        <p>Advanced JS, React, Node.js, Express, databases</p>
+                    </a>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="quote-block">
-            <p>"The best way to learn to code is to build things."</p>
+    <!-- CURRICULUM MODULES -->
+    <section style="padding: 4rem 0; background: var(--card-bg); border-top: 1px solid var(--border-color);">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:2rem;">
+                <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Curriculum Modules</h2>
+                <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 520px; margin: 0 auto;">Click any card to open it. Cards marked <strong style="color:var(--accent);">📊 Presentation</strong> open my own study presentations.</p>
+            </div>
+
+            <div class="module-list">
+                <a href="#" class="module presentation">
+                    <span class="num-badge">Foundations <span class="presentation-tag"><i class="fas fa-file-powerpoint"></i> Presentation</span></span>
+                    <h4>Foundations</h4>
+                    <p>My presentation on HTML, CSS, Flexbox, and JS basics</p>
+                </a>
+
+                <a href="#" class="module presentation">
+                    <span class="num-badge">Intermediate <span class="presentation-tag"><i class="fas fa-file-powerpoint"></i> Presentation</span></span>
+                    <h4>Intermediate HTML &amp; CSS</h4>
+                    <p>My presentation on SVG, tables, forms, grid, positioning</p>
+                </a>
+
+                <a href="#" class="module presentation">
+                    <span class="num-badge">Advanced <span class="presentation-tag"><i class="fas fa-file-powerpoint"></i> Presentation</span></span>
+                    <h4>Advanced HTML &amp; CSS</h4>
+                    <p>My presentation and video on Advanced CSS, animations, and accessibility</p>
+                </a>
+
+                <a href="#" class="module presentation">
+                    <span class="num-badge">JavaScript <span class="presentation-tag"><i class="fas fa-file-powerpoint"></i> Presentation</span></span>
+                    <h4>JavaScript</h4>
+                    <p>My detailed presentation on objects, async/await, APIs, and testing</p>
+                </a>
+
+                <a href="https://www.theodinproject.com/paths/full-stack-javascript/courses/react-js" target="_blank" rel="noopener" class="module">
+                    <span class="num-badge">React</span>
+                    <h4>React JS</h4>
+                    <p>Components, hooks, state management, routing</p>
+                </a>
+
+                <a href="https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs" target="_blank" rel="noopener" class="module">
+                    <span class="num-badge">Backend</span>
+                    <h4>Node.js</h4>
+                    <p>Express, APIs, authentication, middleware</p>
+                </a>
+
+                <a href="https://www.theodinproject.com/paths/full-stack-javascript/courses/databases" target="_blank" rel="noopener" class="module">
+                    <span class="num-badge">Databases</span>
+                    <h4>Databases</h4>
+                    <p>SQL, PostgreSQL, MongoDB, ORMs, data modeling</p>
+                </a>
+
+                <a href="https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs/lessons/project-odin-book" target="_blank" rel="noopener" class="module">
+                    <span class="num-badge">Capstone</span>
+                    <h4>Odin Book</h4>
+                    <p>Final project — a full social network built from scratch</p>
+                </a>
+            </div>
         </div>
+    </section>
 
-        <a href="https://www.theodinproject.com/" target="_blank" class="btn">
+    <section class="quote-section container">
+        <p class="quote-text">"The best way to learn to code is to build things."</p>
+        <a href="https://www.theodinproject.com/" target="_blank" rel="noopener" class="btn">
             Visit The Odin Project <i class="fas fa-arrow-right"></i>
         </a>
     </section>
 
-    <footer><div class="container"><p>© 2026 Shon Biju · Riga, Latvia</p></div></footer>
+    <footer>
+        <div class="container">
+            <p>© 2026 Shon Biju · Riga, Latvia</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="https://github.com/Abinraj2728" target="_blank" style="color: var(--text-main); text-decoration: none; margin: 0 10px; font-weight: 500;"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/abinraj-chovullakandy-3a50091b7" target="_blank" style="color: var(--text-main); text-decoration: none; margin: 0 10px; font-weight: 500;"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </p>
+        </div>
+    </footer>
 
     <script>
         const toggleBtn = document.getElementById('theme-toggle');
         const icon = toggleBtn.querySelector('i');
         const currentTheme = localStorage.getItem('theme');
+        
         if (currentTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
             icon.classList.replace('fa-moon', 'fa-sun');
         }
+
         toggleBtn.addEventListener('click', () => {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             if (isDark) {
