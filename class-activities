@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Basics Task · 16.09.2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="../theme.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f3ee;--bg-alt:#efece4;--card-bg:#fff;--text:#1a1a1a;--text-soft:#52504a;--text-muted:#8a877e;--accent:#8b6f47;--accent-soft:#c9a97a;--border:#e2ddd2;--border-strong:#cfc7b7;--shadow-md:0 10px 30px -10px rgba(60,50,30,.12);--shadow-lg:0 24px 60px -20px rgba(60,50,30,.18);--serif:'Cormorant Garamond',Georgia,serif;--sans:'Inter',sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+::selection{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes drawLine{from{width:0}to{width:60px}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.container{max-width:1100px;margin:0 auto;padding:0 2rem}
+section{padding:6rem 0;position:relative}
+.top-bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(245,243,238,.85);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+.top-bar.scrolled{border-bottom-color:var(--border)}
+.top-bar-inner{max-width:1100px;margin:0 auto;padding:.9rem 2rem;display:flex;justify-content:space-between;align-items:center;gap:1.5rem}
+.brand{font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--text);text-decoration:none;white-space:nowrap}
+.brand:hover{color:var(--accent)}
+.brand span{color:var(--accent)}
+.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center}
+.nav-links a{color:var(--text-soft);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;position:relative;padding:.3rem 0;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--accent);transition:width .35s cubic-bezier(.22,1,.36,1)}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-soft));width:0%;z-index:1001;transition:width .1s linear}
+.page-hero{padding:10rem 0 4rem;text-align:center;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;top:-30%;right:-10%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,122,.12),transparent 70%);animation:float 8s ease-in-out infinite;pointer-events:none}
+.page-hero-inner{position:relative;z-index:1}
+.page-eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.78rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem}
+.page-eyebrow::before{content:'';display:inline-block;width:0;height:1px;background:var(--accent);animation:drawLine 1.2s ease .4s forwards}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:500;line-height:1.1;color:var(--text);margin-bottom:1rem;animation:fadeUp .9s ease .2s both}
+.page-hero h1 em{font-style:italic;color:var(--accent);font-weight:400}
+.page-hero p{font-size:1.05rem;color:var(--text-soft);max-width:620px;margin:0 auto;font-weight:300;animation:fadeUp .9s ease .4s both}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;margin-bottom:2rem;transition:color .3s,gap .3s}
+.back-link:hover{color:var(--accent);gap:.8rem}
+
+.split-view { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; margin-top: 2rem; }
+.code-panel { background: #1e1e1e; border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow-lg); overflow-x: auto; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; line-height: 1.5; }
+.code-panel pre { margin: 0; white-space: pre-wrap; }
+.output-panel { background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 2rem; box-shadow: var(--shadow-lg); }
+.output-panel h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 0.5rem; margin-bottom: 1.5rem; font-family: var(--serif); font-size: 2.2rem; }
+.output-panel h2 { color: #34495e; margin-top: 2rem; margin-bottom: 1rem; font-family: var(--serif); font-size: 1.6rem; }
+.output-panel h3 { color: #e74c3c; font-size: 1.1rem; margin-top: 1.5rem; font-family: var(--sans); font-weight: 600;}
+.output-panel p { color: #555; font-size: 0.95rem; margin-bottom: 1rem; }
+.output-panel hr { border: none; border-top: 1px dashed #ccc; margin: 2rem 0; }
+.details p { margin-bottom: 0.5rem; font-size: 1rem; }
+.details strong { color: #2c3e50; }
+.output-panel .card { background: #f8f9fa; border-left: 5px solid #3498db; padding: 1.2rem; margin-bottom: 1rem; border-radius: 4px; }
+.output-panel .card h3 { margin-top: 0; color: #2980b9; font-family: monospace; font-size: 1.2rem; }
+.output-panel .card p { margin-bottom: 0.3rem; color: #7f8c8d; }
+.output-panel .example { background: #e8f4fd; padding: 0.6rem; border-radius: 4px; font-family: monospace; color: #c0392b; font-size: 0.85rem; margin-top: 0.5rem; }
+
+footer{border-top:1px solid var(--border);padding:2.5rem 0;text-align:center;font-size:.85rem;color:var(--text-muted)}
+footer a{color:var(--accent);text-decoration:none}
+footer a:hover{opacity:.7}
+.scroll-top{position:fixed;right:1.5rem;bottom:1.5rem;width:46px;height:46px;background:var(--text);color:var(--bg);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.95rem;opacity:0;pointer-events:none;transform:translateY(20px);transition:all .4s cubic-bezier(.22,1,.36,1);z-index:999;box-shadow:var(--shadow-md)}
+.scroll-top.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+.scroll-top:hover{transform:translateY(-4px) scale(1.05)}
+@media(max-width:860px){.nav-links{display:none}section{padding:4rem 0}.page-hero{padding:7rem 0 3rem}.split-view{grid-template-columns:1fr}}
+@media(max-width:480px){.container{padding:0 1.2rem}.top-bar-inner{padding:.8rem 1.2rem}.brand{font-size:1.2rem}}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="top-bar" id="topBar">
+  <div class="top-bar-inner">
+    <a href="../index.html" class="brand">Abinraj <span>·</span> C</a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../odin.html">Odin</a></li>
+        <li><a href="../class-activities.html" class="active">Activities</a></li>
+        <li><a href="../homeworks.html">Homeworks</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="../certifications.html">Certifications</a></li>
+        <li><a href="../new-certification.html">New Certs</a></li>
+      </ul>
+    </nav>
+    <div class="theme-switcher" id="themeSwitcher">
+      <button class="theme-switcher-btn" id="themeSwitcherBtn" aria-label="Change theme">
+        <i class="fas fa-palette"></i><span class="label">Theme</span><i class="fas fa-chevron-down arrow"></i>
+      </button>
+      <div class="theme-dropdown">
+        <button class="theme-option" data-theme-set="ocean"><span class="swatch ocean"></span> Ocean Blue <i class="fas fa-check check"></i></button>
+        <button class="theme-option" data-theme-set="forest"><span class="swatch forest"></span> Forest Green <i class="fas fa-check check"></i></button>
+        <button class="theme-option" data-theme-set="rose"><span class="swatch rose"></span> Rose <i class="fas fa-check check"></i></button>
+        <button class="theme-option" data-theme-set="dark"><span class="swatch dark"></span> Dark <i class="fas fa-check check"></i></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container page-hero-inner">
+      <a href="../class-activities.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Activities</a>
+      <div class="page-eyebrow">Class Activity · 16.09.2026</div>
+      <h1>HTML Basics <em>Task</em></h1>
+      <p>Created an HTML page with 10 tags, including my name, details, and an explanation of each tag.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="container">
+      
+      <div class="split-view fade-up">
+        
+        <div class="code-panel">
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Task 16.09&lt;/title&gt;
+  &lt;style&gt;
+    body { font-family: sans-serif; padding: 20px; }
+    h1 { color: #2c3e50; border-bottom: 3px solid #3498db; }
+    h2 { color: #34495e; margin-top: 30px; }
+    .card { background: #f8f9fa; border-left: 5px solid #3498db; padding: 15px; margin-bottom: 10px; }
+    .card h3 { margin-top: 0; color: #2980b9; }
+    .example { background: #e8f4fd; padding: 8px; color: #c0392b; margin-top: 5px; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;h1&gt;Abinraj Chovullakandy&lt;/h1&gt;
+
+  &lt;h2&gt;My Details&lt;/h2&gt;
+  &lt;p&gt;&lt;strong&gt;Name:&lt;/strong&gt; Abinraj Chovullakandy&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; Riga, Latvia&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Email:&lt;/strong&gt; abinrajabi2728@gmail.com&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Role:&lt;/strong&gt; Junior Web Developer&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Hobby:&lt;/strong&gt; Astrophotography&lt;/p&gt;
+
+  &lt;hr&gt;
+
+  &lt;h2&gt;10 HTML Tags with Explanation&lt;/h2&gt;
+
+  &lt;div class="card"&gt;
+    &lt;h3&gt;&amp;lt;h1&amp;gt;&lt;/h3&gt;
+    &lt;p&gt;Main heading of the page.&lt;/p&gt;
+    &lt;div class="example"&gt;&amp;lt;h1&amp;gt;Welcome&amp;lt;/h1&amp;gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="card"&gt;
+    &lt;h3&gt;&amp;lt;p&amp;gt;&lt;/h3&gt;
+    &lt;p&gt;Paragraph tag for text.&lt;/p&gt;
+    &lt;div class="example"&gt;&amp;lt;p&amp;gt;This is a paragraph.&amp;lt;/p&amp;gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="card"&gt;
+    &lt;h3&gt;&amp;lt;a&amp;gt;&lt;/h3&gt;
+    &lt;p&gt;Anchor tag for hyperlinks.&lt;/p&gt;
+    &lt;div class="example"&gt;&amp;lt;a href="#"&gt;Click here&amp;lt;/a&amp;gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="card"&gt;
+    &lt;h3&gt;&amp;lt;img&amp;gt;&lt;/h3&gt;
+    &lt;p&gt;Image tag. Embeds images.&lt;/p&gt;
+    &lt;div class="example"&gt;&amp;lt;img src="photo.jpg"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="card"&gt;
+    &lt;h3&gt;&amp;lt;ul&amp;gt;&lt;/h3&gt;
+    &lt;p&gt;Unordered list.&lt;/p&gt;
+    &lt;div class="example"&gt;&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;Item&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="card"&gt;
+    &lt;h3&gt;&amp;lt;ol&amp;gt;&lt;/h3&gt;
+    &lt;p&gt;Ordered list.&lt;/p&gt;
+    &lt;div class="example"&gt;&amp;lt;ol&amp;gt;&amp;lt;li&amp;gt;First&amp;lt;/li&amp;gt;&amp;lt;/ol&amp;gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="card"&gt;
+    &lt;h3&gt;&amp;lt;li&amp;gt;&lt;/h3&gt;
+    &lt;p&gt;List item for lists.&lt;/p&gt;
+    &lt;div class="example"&gt;&amp;lt;li&amp;gt;My item&amp;lt;/li&amp;gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="card"&gt;
+    &lt;h3&gt;&amp;lt;div&amp;gt;&lt;/h3&gt;
+    &lt;p&gt;Division container.&lt;/p&gt;
+    &lt;div class="example"&gt;&amp;lt;div&amp;gt;Content&amp;lt;/div&amp;gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="card"&gt;
+    &lt;h3&gt;&amp;lt;span&amp;gt;&lt;/h3&gt;
+    &lt;p&gt;Inline container.&lt;/p&gt;
+    &lt;div class="example"&gt;&amp;lt;span style="color:red"&gt;red text&amp;lt;/span&amp;gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="card"&gt;
+    &lt;h3&gt;&amp;lt;button&amp;gt;&lt;/h3&gt;
+    &lt;p&gt;Clickable button.&lt;/p&gt;
+    &lt;div class="example"&gt;&amp;lt;button&amp;gt;Click Me!&amp;lt;/button&amp;gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+
+        <div class="output-panel">
+          <h1>Abinraj Chovullakandy</h1>
+          <h2>My Details</h2>
+          <div class="details">
+              <p><strong>Name:</strong> Abinraj Chovullakandy</p>
+              <p><strong>Location:</strong> Riga, Latvia</p>
+              <p><strong>Email:</strong> abinrajabi2728@gmail.com</p>
+              <p><strong>Role:</strong> Junior Web Developer</p>
+              <p><strong>Hobby:</strong> Astrophotography</p>
+          </div>
+          <hr>
+          <h2>10 HTML Tags with Explanation</h2>
+          <div class="card">
+              <h3>&lt;h1&gt;</h3>
+              <p>Main heading of the page. Used once for the biggest title.</p>
+              <div class="example">&lt;h1&gt;Welcome&lt;/h1&gt;</div>
+          </div>
+          <div class="card">
+              <h3>&lt;p&gt;</h3>
+              <p>Paragraph tag. Used for blocks of text.</p>
+              <div class="example">&lt;p&gt;This is a paragraph.&lt;/p&gt;</div>
+          </div>
+          <div class="card">
+              <h3>&lt;a&gt;</h3>
+              <p>Anchor tag. Creates a hyperlink to another page.</p>
+              <div class="example">&lt;a href="https://example.com"&gt;Click here&lt;/a&gt;</div>
+          </div>
+          <div class="card">
+              <h3>&lt;img&gt;</h3>
+              <p>Image tag. Embeds an image into the page.</p>
+              <div class="example">&lt;img src="photo.jpg" alt="My Photo"&gt;</div>
+          </div>
+          <div class="card">
+              <h3>&lt;ul&gt;</h3>
+              <p>Unordered list. Creates a bulleted list.</p>
+              <div class="example">&lt;ul&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ul&gt;</div>
+          </div>
+          <div class="card">
+              <h3>&lt;ol&gt;</h3>
+              <p>Ordered list. Creates a numbered list.</p>
+              <div class="example">&lt;ol&gt;&lt;li&gt;First&lt;/li&gt;&lt;/ol&gt;</div>
+          </div>
+          <div class="card">
+              <h3>&lt;li&gt;</h3>
+              <p>List item. Used inside ul or ol for each entry.</p>
+              <div class="example">&lt;li&gt;My item&lt;/li&gt;</div>
+          </div>
+          <div class="card">
+              <h3>&lt;div&gt;</h3>
+              <p>Division. A container used to group content.</p>
+              <div class="example">&lt;div&gt;Content&lt;/div&gt;</div>
+          </div>
+          <div class="card">
+              <h3>&lt;span&gt;</h3>
+              <p>Inline container. Used to style a small part of text.</p>
+              <div class="example">&lt;span style="color:red"&gt;red text&lt;/span&gt;</div>
+          </div>
+          <div class="card">
+              <h3>&lt;button&gt;</h3>
+              <p>Button tag. Creates a clickable button.</p>
+              <div class="example">&lt;button&gt;Click Me!&lt;/button&gt;</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 Abinraj Chovullakandy · Riga, Latvia · <a href="https://github.com/Abinraj2728/Abinraj2728" target="_blank">GitHub</a> · <a href="https://www.linkedin.com/in/abinraj-chovullakandy-3a50091b7" target="_blank">LinkedIn</a></p>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+const scrollProgress = document.getElementById('scrollProgress');
+const topBar = document.getElementById('topBar');
+const scrollTopBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => {
+  const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  scrollProgress.style.width = scrolled + '%';
+  if (window.scrollY > 50) { topBar.classList.add('scrolled'); scrollTopBtn.classList.add('visible'); }
+  else { topBar.classList.remove('scrolled'); scrollTopBtn.classList.remove('visible'); }
+});
+scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { 
+    if (entry.isIntersecting) entry.target.classList.add('visible'); 
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal, .fade-in, .fade-up, .fade-left, .fade-right, .scale-in, .section-reveal, .stagger').forEach(el => observer.observe(el));
+</script>
+
+<script>
+(function() {
+  const saved = localStorage.getItem('portfolio-theme') || 'ocean';
+  document.documentElement.setAttribute('data-theme', saved);
+  document.addEventListener('DOMContentLoaded', function() {
+    const switcher = document.getElementById('themeSwitcher');
+    const btn = document.getElementById('themeSwitcherBtn');
+    if (!switcher || !btn) return;
+    function updateActive() {
+      const current = document.documentElement.getAttribute('data-theme') || 'ocean';
+      document.querySelectorAll('.theme-option').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.themeSet === current);
+      });
+    }
+    updateActive();
+    btn.addEventListener('click', function(e) { e.stopPropagation(); switcher.classList.toggle('open'); });
+    document.addEventListener('click', function(e) { if (!switcher.contains(e.target)) switcher.classList.remove('open'); });
+    document.querySelectorAll('.theme-option').forEach(opt => {
+      opt.addEventListener('click', function() {
+        const theme = this.dataset.themeSet;
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('portfolio-theme', theme);
+        updateActive();
+        switcher.classList.remove('open');
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
