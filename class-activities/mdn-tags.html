@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDN HTML Reference · Shon Biju</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --bg-alt: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #0ea5e9;
+            --border: #334155;
+            --font-sans: 'Outfit', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 4rem 2rem;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-alt);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
+        .mono-label {
+            font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; display: block;
+        }
+
+        h1 { font-size: 2rem; margin-bottom: 1rem; }
+        p { color: var(--text-muted); margin-bottom: 1.5rem; }
+
+        a.back-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--text); text-decoration: none; font-weight: 500;
+            padding: 0.6rem 1.2rem; border: 1px solid var(--border);
+            border-radius: 8px; transition: all 0.2s; margin-bottom: 2rem; font-size: 0.9rem;
+        }
+        a.back-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        .content-box {
+            background: var(--bg); padding: 2rem; border-radius: 8px; border: 1px solid var(--border);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+        th, td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--accent);
+            font-weight: 600;
+            font-family: var(--font-mono);
+        }
+        td:first-child {
+            font-family: var(--font-mono);
+            color: var(--text);
+            font-weight: 500;
+        }
+        td:last-child {
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- This links back to the Homeworks page -->
+        <a href="../homeworks.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Homeworks</a>
+        
+        <span class="mono-label">Homework // 07.10.2026</span>
+        <h1>MDN HTML Reference Page</h1>
+        <p>Created an HTML page that includes all tags from the MDN Web Docs HTML Reference, along with my own explanation for each tag.</p>
+        
+        <div class="content-box">
+            <h2>HTML Tags Reference</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>HTML Tag</th>
+                        <th>My Explanation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>&lt;html&gt;</td><td>The root element that wraps all the content on the page.</td></tr>
+                    <tr><td>&lt;head&gt;</td><td>Contains machine-readable information (metadata) about the document.</td></tr>
+                    <tr><td>&lt;title&gt;</td><td>Sets the title of the webpage shown in the browser tab.</td></tr>
+                    <tr><td>&lt;body&gt;</td><td>Represents the content of the document that is visible to the user.</td></tr>
+                    <tr><td>&lt;h1&gt; to &lt;h6&gt;</td><td>Used to create headings, with &lt;h1&gt; being the most important.</td></tr>
+                    <tr><td>&lt;p&gt;</td><td>Used to define a paragraph of text.</td></tr>
+                    <tr><td>&lt;a&gt;</td><td>Creates a hyperlink to other web pages, files, or locations.</td></tr>
+                    <tr><td>&lt;img&gt;</td><td>Embeds an image into the document.</td></tr>
+                    <tr><td>&lt;div&gt;</td><td>A generic container for flow content, used for styling and layout.</td></tr>
+                    <tr><td>&lt;ul&gt; &amp; &lt;ol&gt;</td><td>Creates unordered (bulleted) and ordered (numbered) lists.</td></tr>
+                    <tr><td>&lt;li&gt;</td><td>Defines a list item inside &lt;ul&gt; or &lt;ol&gt;.</td></tr>
+                    <tr><td>&lt;table&gt;</td><td>Represents tabular data arranged in rows and columns.</td></tr>
+                    <tr><td>&lt;form&gt;</td><td>Represents a document section containing interactive controls for submitting information.</td></tr>
+                    <tr><td>&lt;input&gt;</td><td>Used to create interactive controls for web-based forms (text, checkboxes, etc.).</td></tr>
+                    <tr><td>&lt;button&gt;</td><td>An interactive element activated by a user with a mouse, keyboard, or touch.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
