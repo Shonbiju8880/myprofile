@@ -7,289 +7,140 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg-color: #f8f9fa;
-            --text-main: #1a1a1a;
-            --text-muted: #666666;
-            --nav-bg: rgba(248, 249, 250, 0.95);
-            --border-color: #e5e5e5;
-            --card-bg: #ffffff;
-            --accent: #1d4ed8;
-            --accent-hover: #1e40af;
-            --button-text: #ffffff;
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #0f172a;
-            --text-main: #f8fafc;
+            --bg: #0f172a;
+            --bg-alt: #1e293b;
+            --text: #f8fafc;
             --text-muted: #94a3b8;
-            --nav-bg: rgba(15, 23, 42, 0.95);
-            --border-color: #334155;
-            --card-bg: #1e293b;
-            --accent: #3b82f6;
-            --accent-hover: #60a5fa;
-            --button-text: #ffffff;
+            --accent: #0ea5e9;
+            --border: #334155;
+            --font-sans: 'Outfit', sans-serif;
+            --font-mono: 'Fira Code', monospace;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.7;
-            transition: background-color 0.3s, color 0.3s;
-            overflow-x: hidden;
+            padding: 8rem 2rem 4rem;
+            margin: 0;
         }
 
-        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
+        
+        .mono-label {
+            font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; display: block;
+        }
 
-        /* NAVIGATION */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0;
-            background: var(--nav-bg); backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 100; padding: 1.2rem 0; transition: background 0.3s, border-color 0.3s;
-        }
-        nav .container { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; }
-        .nav-brand {
-            font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700;
-            color: var(--text-main); text-decoration: none; letter-spacing: 0.5px;
-        }
-        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-        .nav-links a {
-            font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
-            color: var(--text-muted); text-decoration: none; transition: color 0.2s;
-        }
-        .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
-        .theme-toggle {
-            background: none; border: 1px solid var(--border-color); color: var(--text-main);
-            padding: 0.4rem 1rem; border-radius: 50px; font-family: 'Inter', sans-serif;
-            font-size: 0.75rem; font-weight: 500; cursor: pointer; display: flex;
-            align-items: center; gap: 0.5rem; transition: all 0.2s;
-        }
-        .theme-toggle:hover { background: var(--border-color); }
+        .page-header { text-align: center; margin-bottom: 4rem; }
+        .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .page-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
 
-        /* PAGE HEADER */
-        .page-header { padding: 10rem 0 4rem; text-align: center; }
-        .label {
-            font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 2px; color: var(--text-muted); margin-bottom: 1.5rem;
+        a.back-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--text); text-decoration: none; font-weight: 500;
+            padding: 0.6rem 1.2rem; border: 1px solid var(--border);
+            border-radius: 8px; transition: all 0.2s; margin-bottom: 2rem; font-size: 0.9rem;
         }
-        .page-header h1 { font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 1rem; }
-        .page-header h1 em { font-style: italic; font-weight: 400; }
-        .subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem; }
+        a.back-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-        .back-link {
-            display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem;
-            font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
-            color: var(--text-muted); text-decoration: none; margin-bottom: 2rem; transition: color 0.2s;
-        }
-        .back-link:hover { color: var(--text-main); }
-
-        /* GRID & CARDS FOR HOMEWORK LIST */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
         .card {
-            background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px;
-            padding: 2rem 1.8rem; display: flex; flex-direction: column; position: relative;
-            overflow: hidden; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-            text-decoration: none; color: inherit;
+            background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px;
+            padding: 2rem; display: flex; flex-direction: column; transition: all 0.3s;
+            text-decoration: none; color: inherit; position: relative;
         }
-        .card:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-color: var(--text-muted); }
+        .card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.2); }
         
         .card-icon { font-size: 1.5rem; color: var(--accent); margin-bottom: 1rem; }
-        .card h3 { font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 0.7rem; }
-        .card p { font-size: 0.9rem; line-height: 1.6; color: var(--text-muted); flex-grow: 1; margin-bottom: 1.3rem; }
+        .card h3 { font-size: 1.2rem; margin-bottom: 0.8rem; }
+        .card p { font-size: 0.9rem; color: var(--text-muted); flex-grow: 1; margin-bottom: 1.5rem; }
         
         .card-foot {
-            display: flex; flex-wrap: wrap; gap: 1rem; padding-top: 1rem;
-            border-top: 1px solid var(--border-color); font-size: 0.8rem; color: var(--text-muted);
-        }
-        .card-foot span { display: inline-flex; align-items: center; gap: 0.4rem; }
-        .card-foot i { color: var(--accent); }
-        
-        .card-arrow {
-            position: absolute; bottom: 1.5rem; right: 1.8rem; color: var(--accent);
-            font-size: 0.9rem; opacity: 0; transform: translateX(-8px); transition: all 0.3s;
-        }
-        .card:hover .card-arrow { opacity: 1; transform: translateX(0); }
-
-        footer { padding: 3rem 0; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-muted); font-size: 0.85rem; }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .page-header { padding: 7rem 0 3rem; }
-            .grid { grid-template-columns: 1fr; }
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 1px solid var(--border); padding-top: 1rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent);
         }
     </style>
 </head>
 <body>
-
-    <nav>
-        <div class="container">
-            <a href="index.html" class="nav-brand">Shon Biju</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="odin.html">Odin</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="certifications.html">Certifications</a></li>
-                <li><a href="class-activities.html">Activities</a></li>
-                <li><a href="homeworks.html" class="active">Homeworks</a></li>
-            </ul>
-            <button class="theme-toggle" id="theme-toggle">
-                <i class="fas fa-moon"></i> Theme
-            </button>
-        </div>
-    </nav>
-
-    <header class="page-header container">
-        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to home</a>
-        <div class="label">University Work</div>
-        <h1>Home <em>Works</em></h1>
-        <p class="subtitle">Assignments, essays, and take-home projects completed during my Information Systems degree.</p>
-    </header>
-
-    <section style="padding-top: 0;">
-        <div class="container">
-            <div class="grid">
-                
-                <!-- Homework 1 -->
-                <a href="class-activities/task-16-09.html" class="card">
-                    <div class="card-icon"><i class="fas fa-code"></i></div>
-                    <h3>HTML Basics</h3>
-                    <p>Created an HTML page with 10 tags (with my name, details, and explanation of each tag).</p>
-                    <div class="card-foot">
-                        <span><i class="far fa-calendar-alt"></i> 16.09.2026</span>
-                        <span><i class="fas fa-arrow-right"></i> View Task</span>
-                    </div>
-                    <i class="fas fa-arrow-right card-arrow"></i>
-                </a>
-
-                <!-- Homework 2 -->
-                <a href="class-activities/task-30-09.html" class="card">
-                    <div class="card-icon"><i class="fas fa-file-code"></i></div>
-                    <h3>Webpage with only HTML Tags</h3>
-                    <p>Prepared a webpage using only HTML tags. Included H1, H2, paragraphs, UL/OL lists for education, and an "Interesting Topic" section.</p>
-                    <div class="card-foot">
-                        <span><i class="far fa-calendar-alt"></i> 30.09.2026</span>
-                        <span><i class="fas fa-arrow-right"></i> View Task</span>
-                    </div>
-                    <i class="fas fa-arrow-right card-arrow"></i>
-                </a>
-
-                <!-- Homework 3 -->
-                <a href="homeworks/task-07-10.html" class="card">
-                    <div class="card-icon"><i class="fas fa-book"></i></div>
-                    <h3>MDN HTML Reference Page</h3>
-                    <p>Created an HTML page that includes all tags from the MDN Web Docs HTML Reference, along with my own explanation for each tag.</p>
-                    <div class="card-foot">
-                        <span><i class="far fa-calendar-alt"></i> 07.10.2026</span>
-                        <span><i class="fas fa-arrow-right"></i> View Task</span>
-                    </div>
-                    <i class="fas fa-arrow-right card-arrow"></i>
-                </a>
-
-                <!-- Homework 4 -->
-                <a href="certifications.html" class="card">
-                    <div class="card-icon"><i class="fas fa-file-powerpoint"></i></div>
-                    <h3>Certifications & Presentation</h3>
-                    <p>Merged past certification PPTs into one, created and published this profile page, and prepared a screen recording presentation.</p>
-                    <div class="card-foot">
-                        <span><i class="far fa-calendar-alt"></i> 14.10.2026</span>
-                        <span><i class="fas fa-arrow-right"></i> View Certifications</span>
-                    </div>
-                    <i class="fas fa-arrow-right card-arrow"></i>
-                </a>
-
-                <!-- Homework 5 -->
-                <a href="odin.html" class="card">
-                    <div class="card-icon"><i class="fab fa-js"></i></div>
-                    <h3>Odin Project JavaScript Course</h3>
-                    <p>Prepared presentation with all assignments and tasks from the Odin Project JavaScript Course (Objects, Tic Tac Toe).</p>
-                    <div class="card-foot">
-                        <span><i class="far fa-calendar-alt"></i> 21.10.2026</span>
-                        <span><i class="fas fa-arrow-right"></i> View Odin Project</span>
-                    </div>
-                    <i class="fas fa-arrow-right card-arrow"></i>
-                </a>
-
-                <!-- Homework 6 -->
-                <a href="odin.html" class="card">
-                    <div class="card-icon"><i class="fas fa-video"></i></div>
-                    <h3>JavaScript Course Recording</h3>
-                    <p>Uploaded all JavaScript Course projects to GitHub and prepared a screen recording with voiceover.</p>
-                    <div class="card-foot">
-                        <span><i class="far fa-calendar-alt"></i> 28.10.2026</span>
-                        <span><i class="fas fa-arrow-right"></i> View Odin Project</span>
-                    </div>
-                    <i class="fas fa-arrow-right card-arrow"></i>
-                </a>
-
-                <!-- Homework 7 -->
-                <a href="homeworks/task-04-11.html" class="card">
-                    <div class="card-icon"><i class="fas fa-sync-alt"></i></div>
-                    <h3>Catch-up & Updates</h3>
-                    <p>Completed previous tasks, updated GitHub profile page, and ensured all projects are demonstrated.</p>
-                    <div class="card-foot">
-                        <span><i class="far fa-calendar-alt"></i> 04.11.2026</span>
-                        <span><i class="fas fa-arrow-right"></i> View Task</span>
-                    </div>
-                    <i class="fas fa-arrow-right card-arrow"></i>
-                </a>
-
-                <!-- Homework 8 -->
-                <a href="homeworks/task-11-11.html" class="card">
-                    <div class="card-icon"><i class="fas fa-user-check"></i></div>
-                    <h3>Final Profile Update</h3>
-                    <p>Updated Profile Page with all menus (Class Activities, Past Projects, Odin Project, Homework) and reviewed LLM/AI repos.</p>
-                    <div class="card-foot">
-                        <span><i class="far fa-calendar-alt"></i> 11.11.2026</span>
-                        <span><i class="fas fa-arrow-right"></i> View Task</span>
-                    </div>
-                    <i class="fas fa-arrow-right card-arrow"></i>
-                </a>
-
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>© 2026 Shon Biju · Riga, Latvia</p>
-            <p style="margin-top: 0.5rem;">
-                <a href="https://github.com/Abinraj2728" target="_blank" style="color: var(--text-main); text-decoration: none; margin: 0 10px; font-weight: 500;"><i class="fab fa-github"></i> GitHub</a>
-                <a href="https://www.linkedin.com/in/abinraj-chovullakandy-3a50091b7" target="_blank" style="color: var(--text-main); text-decoration: none; margin: 0 10px; font-weight: 500;"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            </p>
-        </div>
-    </footer>
-
-    <script>
-        const toggleBtn = document.getElementById('theme-toggle');
-        const icon = toggleBtn.querySelector('i');
-        const currentTheme = localStorage.getItem('theme');
+    <div class="container">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
         
-        if (currentTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            icon.classList.replace('fa-moon', 'fa-sun');
-        }
+        <header class="page-header">
+            <div class="mono-label">// Assignments</div>
+            <h1>Home Works</h1>
+            <p>Assignments, essays, and take-home projects completed during my Information Systems degree.</p>
+        </header>
 
-        toggleBtn.addEventListener('click', () => {
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            if (isDark) {
-                document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-                icon.classList.replace('fa-sun', 'fa-moon');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                icon.classList.replace('fa-moon', 'fa-sun');
-            }
-        });
-    </script>
+        <div class="grid">
+            <a href="class-activities/task-16-09.html" class="card">
+                <div class="card-icon"><i class="fas fa-code"></i></div>
+                <h3>HTML Basics</h3>
+                <p>Created an HTML page with 10 tags (with my name, details, and explanation of each tag).</p>
+                <div class="card-foot">
+                    <span><i class="far fa-calendar-alt"></i> 16.09.2026</span>
+                    <span><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+
+            <a href="class-activities/task-30-09.html" class="card">
+                <div class="card-icon"><i class="fas fa-file-code"></i></div>
+                <h3>Webpage with only HTML Tags</h3>
+                <p>Prepared a webpage using only HTML tags. Included H1, H2, paragraphs, UL/OL lists for education, and an "Interesting Topic" section.</p>
+                <div class="card-foot">
+                    <span><i class="far fa-calendar-alt"></i> 30.09.2026</span>
+                    <span><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+
+            <!-- THIS LINKS TO YOUR MDN TAGS FILE -->
+            <a href="class-activities/mdn-tags.html" class="card">
+                <div class="card-icon"><i class="fas fa-book"></i></div>
+                <h3>MDN HTML Reference Page</h3>
+                <p>Created an HTML page that includes all tags from the MDN Web Docs HTML Reference, along with my own explanation for each tag.</p>
+                <div class="card-foot">
+                    <span><i class="far fa-calendar-alt"></i> 07.10.2026</span>
+                    <span><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+
+            <a href="certifications.html" class="card">
+                <div class="card-icon"><i class="fas fa-file-powerpoint"></i></div>
+                <h3>Certifications & Presentation</h3>
+                <p>Merged past certification PPTs into one, created and published this profile page, and prepared a screen recording presentation.</p>
+                <div class="card-foot">
+                    <span><i class="far fa-calendar-alt"></i> 14.10.2026</span>
+                    <span><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+
+            <a href="odin.html" class="card">
+                <div class="card-icon"><i class="fab fa-js"></i></div>
+                <h3>Odin Project JavaScript Course</h3>
+                <p>Prepared presentation with all assignments and tasks from the Odin Project JavaScript Course (Objects, Tic Tac Toe).</p>
+                <div class="card-foot">
+                    <span><i class="far fa-calendar-alt"></i> 21.10.2026</span>
+                    <span><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+
+            <a href="odin.html" class="card">
+                <div class="card-icon"><i class="fas fa-video"></i></div>
+                <h3>JavaScript Course Recording</h3>
+                <p>Uploaded all JavaScript Course projects to GitHub and prepared a screen recording with voiceover.</p>
+                <div class="card-foot">
+                    <span><i class="far fa-calendar-alt"></i> 28.10.2026</span>
+                    <span><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+        </div>
+    </div>
 </body>
 </html>
