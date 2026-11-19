@@ -7,268 +7,136 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg-color: #f8f9fa;
-            --text-main: #1a1a1a;
-            --text-muted: #666666;
-            --nav-bg: rgba(248, 249, 250, 0.95);
-            --border-color: #e5e5e5;
-            --card-bg: #ffffff;
-            --accent: #1d4ed8;
-            --accent-hover: #1e40af;
-            --button-text: #ffffff;
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #0f172a;
-            --text-main: #f8fafc;
+            --bg: #0f172a;
+            --bg-alt: #1e293b;
+            --text: #f8fafc;
             --text-muted: #94a3b8;
-            --nav-bg: rgba(15, 23, 42, 0.95);
-            --border-color: #334155;
-            --card-bg: #1e293b;
-            --accent: #3b82f6;
-            --accent-hover: #60a5fa;
-            --button-text: #ffffff;
+            --accent: #0ea5e9;
+            --border: #334155;
+            --font-sans: 'Outfit', sans-serif;
+            --font-mono: 'Fira Code', monospace;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.7;
-            transition: background-color 0.3s, color 0.3s;
-            overflow-x: hidden;
+            padding: 8rem 2rem 4rem;
+            margin: 0;
         }
 
-        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
+        
+        .mono-label {
+            font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; display: block;
+        }
 
-        /* NAVIGATION */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0;
-            background: var(--nav-bg); backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 100; padding: 1.2rem 0; transition: background 0.3s, border-color 0.3s;
-        }
-        nav .container { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; }
-        .nav-brand {
-            font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700;
-            color: var(--text-main); text-decoration: none; letter-spacing: 0.5px;
-        }
-        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-        .nav-links a {
-            font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
-            color: var(--text-muted); text-decoration: none; transition: color 0.2s;
-        }
-        .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
-        .theme-toggle {
-            background: none; border: 1px solid var(--border-color); color: var(--text-main);
-            padding: 0.4rem 1rem; border-radius: 50px; font-family: 'Inter', sans-serif;
-            font-size: 0.75rem; font-weight: 500; cursor: pointer; display: flex;
-            align-items: center; gap: 0.5rem; transition: all 0.2s;
-        }
-        .theme-toggle:hover { background: var(--border-color); }
+        .page-header { text-align: center; margin-bottom: 4rem; }
+        .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .page-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
 
-        /* PAGE HEADER */
-        .page-header { padding: 10rem 0 4rem; text-align: center; }
-        .label {
-            font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 2px; color: var(--text-muted); margin-bottom: 1.5rem;
+        a.back-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--text); text-decoration: none; font-weight: 500;
+            padding: 0.6rem 1.2rem; border: 1px solid var(--border);
+            border-radius: 8px; transition: all 0.2s; margin-bottom: 2rem; font-size: 0.9rem;
         }
-        .page-header h1 { font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 1rem; }
-        .page-header h1 em { font-style: italic; font-weight: 400; }
-        .subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem; }
+        a.back-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-        .back-link {
-            display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem;
-            font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
-            color: var(--text-muted); text-decoration: none; margin-bottom: 2rem; transition: color 0.2s;
-        }
-        .back-link:hover { color: var(--text-main); }
-
-        /* TABLE STYLES */
         .table-wrapper {
-            background: var(--card-bg); border: 1px solid var(--border-color);
-            border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            margin-top: 2rem;
+            background: var(--bg-alt); border: 1px solid var(--border);
+            border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         table { width: 100%; border-collapse: collapse; text-align: left; }
-        th {
-            background: var(--bg-color); color: var(--text-main); font-family: 'Playfair Display', serif;
-            font-size: 1.1rem; font-weight: 600; padding: 1.2rem; border-bottom: 2px solid var(--border-color);
-        }
-        td {
-            padding: 1.2rem; border-bottom: 1px solid var(--border-color);
-            color: var(--text-muted); font-size: 0.95rem; vertical-align: top;
-        }
+        th { background: rgba(14, 165, 233, 0.1); color: var(--accent); font-family: var(--font-mono); padding: 1.2rem; font-weight: 600; border-bottom: 2px solid var(--border); }
+        td { padding: 1.2rem; border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: 0.95rem; vertical-align: top; }
         tr:last-child td { border-bottom: none; }
-        tr:hover td { background: var(--bg-color); color: var(--text-main); }
+        tr:hover td { background: var(--bg); color: var(--text); }
         
-        .date-col { font-weight: 600; color: var(--accent); white-space: nowrap; }
-        .task-col { font-weight: 600; color: var(--text-main); }
-        .desc-col { font-size: 0.9rem; line-height: 1.6; }
+        .date-col { font-family: var(--font-mono); font-weight: 600; color: var(--accent); white-space: nowrap; }
+        .task-col { font-weight: 600; color: var(--text); }
         
         .btn-inline {
-            display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.8rem;
-            background: var(--accent); color: #fff; text-decoration: none; border-radius: 4px;
-            font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
-            transition: all 0.3s; margin-top: 0.5rem;
+            display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem;
+            background: var(--accent); color: #fff; text-decoration: none; border-radius: 6px;
+            font-size: 0.8rem; font-weight: 600; margin-top: 0.5rem; transition: 0.2s;
         }
-        .btn-inline:hover { background: var(--accent-hover); transform: translateY(-2px); }
-
-        footer { padding: 3rem 0; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-muted); font-size: 0.85rem; }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .page-header { padding: 7rem 0 3rem; }
-            th, td { padding: 1rem 0.8rem; font-size: 0.85rem; }
-            .date-col, .task-col { display: block; width: 100%; }
-            .desc-col { display: block; padding-top: 0; }
-            .table-wrapper { overflow-x: auto; }
-        }
+        .btn-inline:hover { background: #38bdf8; transform: translateY(-2px); }
     </style>
 </head>
 <body>
-
-    <nav>
-        <div class="container">
-            <a href="index.html" class="nav-brand">Shon Biju</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="odin.html">Odin</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="certifications.html">Certifications</a></li>
-                <li><a href="class-activities.html" class="active">Activities</a></li>
-            </ul>
-            <button class="theme-toggle" id="theme-toggle">
-                <i class="fas fa-moon"></i> Theme
-            </button>
-        </div>
-    </nav>
-
-    <header class="page-header container">
-        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to home</a>
-        <div class="label">University Work</div>
-        <h1>Class <em>Activities</em></h1>
-        <p class="subtitle">Practical exercises, group work, and in-class projects from my Information Systems studies.</p>
-    </header>
-
-    <section style="padding-top: 0;">
-        <div class="container">
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Task / Activity</th>
-                            <th>Details & Output</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Task 1 -->
-                        <tr>
-                            <td class="date-col">16.09.2026</td>
-                            <td class="task-col">HTML Basics (W3Schools Practice)</td>
-                            <td class="desc-col">
-                                Created an HTML page with 10 tags (including my name and details). Explained each tag used.
-                                <br>
-                                <a href="class-activities/task-16-09.html" class="btn-inline">
-                                    <i class="fas fa-external-link-alt"></i> View Task Page
-                                </a>
-                            </td>
-                        </tr>
-                        <!-- Task 2 -->
-                        <tr>
-                            <td class="date-col">30.09.2026</td>
-                            <td class="task-col">Webpage with only HTML Tags</td>
-                            <td class="desc-col">
-                                Prepared a webpage using only HTML tags, including lists and a custom-colored "Interesting Topic" section.
-                                <br>
-                                <a href="class-activities/task-30-09.html" class="btn-inline">
-                                    <i class="fas fa-external-link-alt"></i> View Task Page
-                                </a>
-                            </td>
-                        </tr>
-                        <!-- Task 3 -->
-                        <tr>
-                            <td class="date-col">07.10.2026</td>
-                            <td class="task-col"></td>
-                            <td class="desc-col"></td>
-                        </tr>
-                        <!-- Task 4 -->
-                        <tr>
-                            <td class="date-col">14.10.2026</td>
-                            <td class="task-col"></td>
-                            <td class="desc-col"></td>
-                        </tr>
-                        <!-- Task 5 -->
-                        <tr>
-                            <td class="date-col">21.10.2026</td>
-                            <td class="task-col"></td>
-                            <td class="desc-col"></td>
-                        </tr>
-                        <!-- Task 6 -->
-                        <tr>
-                            <td class="date-col">28.10.2026</td>
-                            <td class="task-col"></td>
-                            <td class="desc-col"></td>
-                        </tr>
-                        <!-- Task 7 -->
-                        <tr>
-                            <td class="date-col">04.11.2026</td>
-                            <td class="task-col"></td>
-                            <td class="desc-col"></td>
-                        </tr>
-                        <!-- Task 8 -->
-                        <tr>
-                            <td class="date-col">11.11.2026</td>
-                            <td class="task-col"></td>
-                            <td class="desc-col"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>© 2026 Shon Biju · Riga, Latvia</p>
-            <p style="margin-top: 0.5rem;">
-                <a href="https://github.com/Abinraj2728" target="_blank" style="color: var(--text-main); text-decoration: none; margin: 0 10px; font-weight: 500;"><i class="fab fa-github"></i> GitHub</a>
-                <a href="https://www.linkedin.com/in/abinraj-chovullakandy-3a50091b7" target="_blank" style="color: var(--text-main); text-decoration: none; margin: 0 10px; font-weight: 500;"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            </p>
-        </div>
-    </footer>
-
-    <script>
-        const toggleBtn = document.getElementById('theme-toggle');
-        const icon = toggleBtn.querySelector('i');
-        const currentTheme = localStorage.getItem('theme');
+    <div class="container">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
         
-        if (currentTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            icon.classList.replace('fa-moon', 'fa-sun');
-        }
+        <header class="page-header">
+            <div class="mono-label">// University Work</div>
+            <h1>Class Activities</h1>
+            <p>Practical exercises, group work, and in-class projects from my Information Systems studies.</p>
+        </header>
 
-        toggleBtn.addEventListener('click', () => {
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            if (isDark) {
-                document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-                icon.classList.replace('fa-sun', 'fa-moon');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                icon.classList.replace('fa-moon', 'fa-sun');
-            }
-        });
-    </script>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Task / Activity</th>
+                        <th>Details & Output</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="date-col">16.09.2026</td>
+                        <td class="task-col">HTML Basics (W3Schools Practice)</td>
+                        <td>Created an HTML page with 10 tags (including my name and details). Explained each tag used.<br>
+                            <a href="class-activities/task-16-09.html" class="btn-inline"><i class="fas fa-external-link-alt"></i> View Task Page</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="date-col">30.09.2026</td>
+                        <td class="task-col">Webpage with only HTML Tags</td>
+                        <td>Prepared a webpage using only HTML tags, including lists and a custom-colored "Interesting Topic" section.<br>
+                            <a href="class-activities/task-30-09.html" class="btn-inline"><i class="fas fa-external-link-alt"></i> View Task Page</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="date-col">07.10.2026</td>
+                        <td class="task-col">MDN HTML Reference Page</td>
+                        <td>Created an HTML page that includes all tags from the MDN Web Docs HTML Reference, along with my own explanation for each tag.<br>
+                            <a href="class-activities/task-07-10.html" class="btn-inline"><i class="fas fa-external-link-alt"></i> View Task Page</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="date-col">14.10.2026</td>
+                        <td class="task-col">Certifications & Presentation</td>
+                        <td>Merged past certification PPTs into one, created and published this profile page, and prepared a screen recording presentation.<br>
+                            <a href="class-activities/task-14-10.html" class="btn-inline"><i class="fas fa-external-link-alt"></i> View Task Page</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="date-col">21.10.2026</td>
+                        <td class="task-col">Odin Project JavaScript Course</td>
+                        <td>Prepared presentation with all assignments and tasks from the Odin Project JavaScript Course (Objects, Tic Tac Toe).<br>
+                            <a href="class-activities/task-21-10.html" class="btn-inline"><i class="fas fa-external-link-alt"></i> View Task Page</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="date-col">28.10.2026</td>
+                        <td class="task-col">JavaScript Course Recording</td>
+                        <td>Uploaded all JavaScript Course projects to GitHub and prepared a screen recording with voiceover.<br>
+                            <a href="class-activities/task-28-10.html" class="btn-inline"><i class="fas fa-external-link-alt"></i> View Task Page</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>
