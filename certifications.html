@@ -35,4 +35,73 @@
         h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
         
         .mono-label {
-            font-family: var(--font-mono);
+            font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; display: block;
+        }
+
+        .page-header { text-align: center; margin-bottom: 4rem; }
+        .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .page-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        a.back-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--text); text-decoration: none; font-weight: 500;
+            padding: 0.6rem 1.2rem; border: 1px solid var(--border);
+            border-radius: 8px; transition: all 0.2s; margin-bottom: 2rem; font-size: 0.9rem;
+        }
+        a.back-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        .cert-list { display: flex; flex-direction: column; gap: 1.5rem; }
+        .cert-item {
+            background: var(--bg-alt); border: 1px solid var(--border);
+            border-radius: 12px; padding: 2rem;
+        }
+        .cert-item h3 { font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--text); }
+        .cert-meta {
+            font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); margin-bottom: 1rem;
+        }
+        .cert-desc { color: var(--text-muted); margin-bottom: 1.5rem; }
+        
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.6rem 1.2rem;
+            font-size: 0.85rem; font-weight: 600; border-radius: 6px; text-decoration: none;
+            background: var(--bg); color: var(--text); border: 1px solid var(--border); transition: all 0.2s;
+        }
+        .btn:hover { border-color: var(--accent); color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        
+        <header class="page-header">
+            <div class="mono-label">// Achievements</div>
+            <h1>My Certifications</h1>
+            <p>A collection of my completed courses, certifications, and professional development milestones.</p>
+        </header>
+
+        <div class="cert-list">
+            <div class="cert-item">
+                <h3>Diploma in C Programming</h3>
+                <div class="cert-meta">Alison · May 2025</div>
+                <p class="cert-desc">Comprehensive 16-module course covering C fundamentals: number systems, program flow, data types, arrays, strings, pointers, constants, logic, and loops.</p>
+                <a href="#" class="btn"><i class="fas fa-file-pdf"></i> View Certificate</a>
+            </div>
+
+            <div class="cert-item">
+                <h3>AI Capstone Project with Deep Learning</h3>
+                <div class="cert-meta">IBM / Coursera · April 2025</div>
+                <p class="cert-desc">End-to-end deep learning project — image classification with PyTorch and Keras/TensorFlow. Part of the IBM AI Engineering Professional Certificate.</p>
+                <a href="#" class="btn"><i class="fas fa-file-pdf"></i> View Certificate</a>
+            </div>
+
+            <div class="cert-item">
+                <h3>Java Certificate</h3>
+                <div class="cert-meta">Certified · 2025</div>
+                <p class="cert-desc">Java programming certification covering OOP, syntax, and application development fundamentals, including exception handling and file I/O.</p>
+                <a href="#" class="btn"><i class="fas fa-file-pdf"></i> View Certificate</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
