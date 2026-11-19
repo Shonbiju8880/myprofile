@@ -1,12 +1,106 @@
-                        <!-- Task 4 -->
-                        <tr>
-                            <td class="date-col">14.10.2026</td>
-                            <td class="task-col">Certifications & Presentation</td>
-                            <td class="desc-col">
-                                Merged past certification PPTs into one, created and published this profile page, and prepared a screen recording presentation.
-                                <br>
-                                <a href="class-activities/task-14-10.html" class="btn-inline">
-                                    <i class="fas fa-external-link-alt"></i> View Task Page
-                                </a>
-                            </td>
-                        </tr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 14.10 · Shon Biju</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --bg-alt: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #0ea5e9;
+            --border: #334155;
+            --font-sans: 'Outfit', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 4rem 2rem;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-alt);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
+        .mono-label {
+            font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; display: block;
+        }
+
+        h1 { font-size: 2rem; margin-bottom: 1rem; }
+        p { color: var(--text-muted); margin-bottom: 1.5rem; }
+
+        a.back-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--text); text-decoration: none; font-weight: 500;
+            padding: 0.6rem 1.2rem; border: 1px solid var(--border);
+            border-radius: 8px; transition: all 0.2s; margin-bottom: 2rem; font-size: 0.9rem;
+        }
+        a.back-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        .content-box {
+            background: var(--bg); padding: 2rem; border-radius: 8px; border: 1px solid var(--border);
+        }
+        
+        .task-content ul { padding-left: 1.5rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+        .task-content li { margin-bottom: 0.8rem; }
+        
+        .action-link {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--accent); color: #fff; text-decoration: none;
+            padding: 0.8rem 1.5rem; border-radius: 6px; font-weight: 500;
+            margin-top: 1rem; transition: 0.2s;
+        }
+        .action-link:hover { background: #38bdf8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../class-activities.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Activities</a>
+        
+        <span class="mono-label">Class Activity // 14.10.2026</span>
+        <h1>Certifications & Presentation</h1>
+        <p>Merged past certification PPTs into one, created and published this profile page, and prepared a screen recording presentation.</p>
+        
+        <div class="content-box task-content">
+            
+            <h2>Assignment Summary</h2>
+            <p>For this task, I successfully consolidated all my past certifications and built a fully responsive portfolio website to showcase them.</p>
+            
+            <ul>
+                <li>Merged multiple PowerPoint presentations into a single, cohesive document.</li>
+                <li>Designed and coded the <strong>Certifications Page</strong> on this website.</li>
+                <li>Recorded a screen presentation walking through the site and my achievements.</li>
+            </ul>
+
+            <h3>View the Result</h3>
+            <p>Click the button below to see the live Certifications page that was built for this assignment.</p>
+            
+            <a href="../certifications.html" class="action-link">
+                <i class="fas fa-external-link-alt"></i> Go to Certifications Page
+            </a>
+
+        </div>
+    </div>
+</body>
+</html>
