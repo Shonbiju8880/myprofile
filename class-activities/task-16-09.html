@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 16.09 · Shon Biju</title>
+    
+    <!-- Modern Tech Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --bg-alt: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #0ea5e9;
+            --border: #334155;
+            --font-sans: 'Outfit', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 4rem 2rem;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-alt);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
+        
+        .mono-label {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        h1 { font-size: 2rem; margin-bottom: 1rem; }
+        p { color: var(--text-muted); margin-bottom: 1.5rem; }
+
+        a.back-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--text); text-decoration: none; font-weight: 500;
+            padding: 0.6rem 1.2rem; border: 1px solid var(--border);
+            border-radius: 8px; transition: all 0.2s; margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        a.back-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        .content-box {
+            background: var(--bg);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        /* Custom styling for your HTML task */
+        .task-content h2 { color: var(--accent); font-size: 1.5rem; margin-bottom: 1rem; }
+        .task-content ul { padding-left: 1.5rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+        .task-content li { margin-bottom: 0.5rem; }
+        
+        /* A simple button to show I know HTML */
+        .demo-btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: 0.2s;
+        }
+        .demo-btn:hover { background: #38bdf8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button linking to the main class-activities page -->
+        <a href="../class-activities.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Activities</a>
+        
+        <span class="mono-label">Class Activity // 16.09.2026</span>
+        <h1>HTML Basics (W3Schools Practice)</h1>
+        <p>Created an HTML page with 10 tags (including my name and details). Explained each tag used.</p>
+        
+        <!-- THIS IS WHERE YOUR TASK GOES -->
+        <div class="content-box task-content">
+            
+            <h2>My 10 HTML Tags</h2>
+            <p>Hello! My name is <strong>Shon Biju</strong>.</p>
+            
+            <h3>Tags I used on this page:</h3>
+            <ul>
+                <li><code>&lt;html&gt;</code> - The root of the HTML document.</li>
+                <li><code>&lt;head&gt;</code> - Contains metadata and the page title.</li>
+                <li><code>&lt;title&gt;</code> - Sets the name shown on the browser tab.</li>
+                <li><code>&lt;body&gt;</code> - Holds all the visible content.</li>
+                <li><code>&lt;div&gt;</code> - A container used for layout and styling.</li>
+                <li><code>&lt;h1&gt;</code> and <code>&lt;h2&gt;</code> - Used for headings.</li>
+                <li><code>&lt;p&gt;</code> - Used for paragraphs of text.</li>
+                <li><code>&lt;strong&gt;</code> - Makes text bold and important.</li>
+                <li><code>&lt;ul&gt;</code> and <code>&lt;li&gt;</code> - Creates an unordered list.</li>
+                <li><code>&lt;a&gt;</code> - Creates a hyperlink (like the button below).</li>
+            </ul>
+
+            <a href="https://www.w3schools.com/html/" target="_blank" class="demo-btn">Visit W3Schools</a>
+
+        </div>
+    </div>
+</body>
+</html>
