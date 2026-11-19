@@ -1,0 +1,25 @@
+/* Modern Tech Theme - Shon Biju */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bg: #0f172a;
+    --bg-alt: #1e293b;
+    --text: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #0ea5e9;
+    --accent-hover: #38bdf8;
+    --border: #334155;
+    --font-sans: 'Outfit', sans-serif;
+    --font-mono: 'Fira Code', monospace;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
+.mono-label { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+.card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; }
