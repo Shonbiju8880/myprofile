@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shon Biju · Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f6f8fc;
+            color: #1e293b;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        .container { max-width: 1280px; margin: 0 auto; }
+
+        /* ===== HEADER / PROFILE ===== */
+        .profile {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem 2rem;
+            border-radius: 32px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.03);
+            border: 1px solid #e9eef4;
+        }
+
+        .avatar {
+            width: 110px;
+            height: 110px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 10px 18px -6px rgba(37,99,235,0.3);
+            flex-shrink: 0;
+            letter-spacing: 0.05em;
+        }
+
+        .intro h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #0f172a;
+            margin-bottom: 0.35rem;
+        }
+
+        .intro .tagline {
+            font-size: 1.05rem;
+            color: #475569;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .intro .location {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+
+        .intro .location i { margin-right: 0.4rem; color: #2563eb; }
+
+        .social-links { display: flex; gap: 1.2rem; }
+
+        .social-links a {
+            color: #64748b;
+            font-size: 1.3rem;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .social-links a:hover { color: #2563eb; transform: translateY(-2px); }
+
+        /* ===== SECTION HEADERS ===== */
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin: 2.8rem 0 1.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: #0f172a;
+        }
+
+        .section-header .badge {
+            background: #e2e8f0;
+            color: #1e293b;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+        }
+
+        .badge.in-progress {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* ===== CARDS GRID ===== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.8rem 1.6rem;
+            border: 1px solid #eef2f6;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: #cdd9e9;
+            box-shadow: 0 18px 30px -12px rgba(0,0,0,0.08);
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2563eb;
+            background: #eef4ff;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+
+        .card p {
+            color: #475569;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.4rem;
+        }
+
+        .tag {
+            background: #f1f5f9;
+            color: #334155;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            border-radius: 40px;
+            letter-spacing: 0.01em;
+        }
+
+        .card.course .card-icon { background: #f3e8ff; color: #7c3aed; }
+        .card.project .card-icon { background: #e6f7f0; color: #0f766e; }
+        .card.cert .card-icon { background: #fef3c7; color: #b45309; }
+        .card.ongoing .card-icon { background: #dbeafe; color: #1d4ed8; }
+
+        .project-meta {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+            font-size: 0.8rem;
+            color: #64748b;
+            border-top: 1px solid #eef2f6;
+            padding-top: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .project-meta a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .project-meta a:hover { text-decoration: underline; }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 24px;
+            border: 1px solid #eef2f6;
+            margin-bottom: 1rem;
+            color: #334155;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .about-box p + p { margin-top: 0.9rem; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            margin-top: 4rem;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 2rem;
+        }
+
+        footer a { color: #2563eb; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 640px) {
+            body { padding: 1.2rem; }
+            .profile { padding: 1.5rem; }
+            .intro h1 { font-size: 1.6rem; }
+            .section-header h2 { font-size: 1.4rem; }
+            .avatar { width: 80px; height: 80px; font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- ========= PROFILE HEADER ========= -->
+        <div class="profile">
+            <div class="avatar">SB</div>
+            <div class="intro">
+                <h1>Shon Biju</h1>
+                <div class="tagline">Information Systems Student · Aspiring IT Professional</div>
+                <div class="location">
+                    <i class="fas fa-map-marker-alt"></i> Riga Nordic University, Latvia
+                </div>
+                <div class="social-links">
+                    <a href="#" target="_blank" aria-label="GitHub" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" target="_blank" aria-label="LinkedIn" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========= ABOUT ========= -->
+        <div class="section-header">
+            <h2><i class="fas fa-user" style="color: #2563eb; margin-right: 0.6rem;"></i>About me</h2>
+        </div>
+        <div class="about-box">
+            <p>
+                Hello! I'm <strong>Shon</strong>, an Information Systems student at <strong>Riga Nordic University</strong> in Latvia.
+                I'm passionate about building practical digital solutions — from web applications to data-driven systems.
+            </p>
+            <p>
+                I'm currently expanding my skills through <strong>The Odin Project</strong> and hands-on projects
+                involving web development, IoT, and programming fundamentals. I love turning ideas into working prototypes
+                and I'm always learning something new.
+            </p>
+        </div>
+
+        <!-- ========= ONGOING COURSES ========= -->
+        <div class="section-header">
+            <h2><i class="fas fa-spinner" style="color: #1d4ed8; margin-right: 0.6rem;"></i>Currently learning</h2>
+            <span class="badge in-progress">In progress</span>
+        </div>
+
+        <div class="grid">
+            <div class="card ongoing">
+                <div class="card-icon"><i class="fas fa-book-open"></i></div>
+                <h3>The Odin Project</h3>
+                <p>Full-stack web development curriculum covering HTML, CSS, JavaScript, Node.js, React, and databases. Building real projects as part of the course.</p>
+                <div class="tag-list">
+                    <span class="tag">HTML/CSS</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">React</span>
+                </div>
+                <div class="project-meta">
+                    <span><i class="far fa-calendar-alt"></i> Started 2025</span>
+                    <a href="https://www.theodinproject.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Course site</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========= PAST PROJECTS ========= -->
+        <div class="section-header">
+            <h2><i class="fas fa-code-branch" style="color: #0f766e; margin-right: 0.6rem;"></i>Past projects</h2>
+            <span class="badge">1 project</span>
+        </div>
+
+        <div class="grid">
+            <div class="card project">
+                <div class="card-icon"><i class="fas fa-microchip"></i></div>
+                <h3>Smart Home IoT Prototype</h3>
+                <p>Virtual IoT prototype for Robotics subject. Features automatic light control with PIR motion sensor, temperature-based fan control (DHT22, 30°C threshold), and remote control simulation via serial commands. Built with Arduino on Wokwi.</p>
+                <div class="tag-list">
+                    <span class="tag">Arduino</span>
+                    <span class="tag">IoT</span>
+                    <span class="tag">Wokwi</span>
+                    <span class="tag">C++</span>
+                    <span class="tag">Sensors</span>
+                </div>
+                <div class="project-meta">
+                    <span><i class="far fa-calendar-alt"></i> 2026</span>
+                    <a href="#" target="_blank"><i class="fas fa-link"></i> View on GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========= PAST CERTIFICATIONS ========= -->
+        <div class="section-header">
+            <h2><i class="fas fa-certificate" style="color: #b45309; margin-right: 0.6rem;"></i>Past certifications</h2>
+            <span class="badge">3 certificates</span>
+        </div>
+
+        <div class="grid">
+            <div class="card cert">
+                <div class="card-icon"><i class="fas fa-code"></i></div>
+                <h3>Diploma in C Programming</h3>
+                <p>Comprehensive 16-module course covering C fundamentals: number systems, program flow, data types, arrays, strings, pointers, constants, logic, and loops. Completed with assessments.</p>
+                <div class="tag-list">
+                    <span class="tag">Alison</span>
+                    <span class="tag">C Programming</span>
+                    <span class="tag">2025</span>
+                </div>
+                <div class="project-meta">
+                    <span><i class="far fa-calendar-alt"></i> May 2025</span>
+                    <span><i class="fas fa-check-circle" style="color:#16a34a;"></i> Certified</span>
+                </div>
+            </div>
+
+            <div class="card cert">
+                <div class="card-icon"><i class="fas fa-brain"></i></div>
+                <h3>AI Capstone: Deep Learning</h3>
+                <p>IBM AI Engineering Professional Certificate course via Coursera. End-to-end deep learning project: data loading, preparation, transfer learning with ResNet/VGG, and image classification evaluation.</p>
+                <div class="tag-list">
+                    <span class="tag">IBM</span>
+                    <span class="tag">Coursera</span>
+                    <span class="tag">Deep Learning</span>
+                    <span class="tag">PyTorch</span>
+                    <span class="tag">Keras</span>
+                </div>
+                <div class="project-meta">
+                    <span><i class="far fa-calendar-alt"></i> May 2025</span>
+                    <span><i class="fas fa-check-circle" style="color:#16a34a;"></i> Certified</span>
+                </div>
+            </div>
+
+            <div class="card cert">
+                <div class="card-icon"><i class="fab fa-java"></i></div>
+                <h3>Java Certificate</h3>
+                <p>Java programming certification covering object-oriented programming concepts, syntax, and application development fundamentals.</p>
+                <div class="tag-list">
+                    <span class="tag">Java</span>
+                    <span class="tag">OOP</span>
+                    <span class="tag">2025</span>
+                </div>
+                <div class="project-meta">
+                    <span><i class="far fa-calendar-alt"></i> 2025</span>
+                    <span><i class="fas fa-check-circle" style="color:#16a34a;"></i> Certified</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========= FOOTER ========= -->
+        <footer>
+            <p>
+                © 2026 Shon Biju · Riga, Latvia
+                &nbsp;·&nbsp;
+                <a href="#" target="_blank">GitHub</a>
+                &nbsp;·&nbsp;
+                <a href="#" target="_blank">LinkedIn</a>
+            </p>
+        </footer>
+
+    </div>
+</body>
+</html>
