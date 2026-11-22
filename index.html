@@ -60,63 +60,42 @@ section{padding:5rem 0;position:relative}
 .presentation-buttons{display:flex;gap:.4rem;}
 .btn-sm{padding:.45rem .8rem;font-size:.72rem;}
 
-/* --- MODAL POPUP STYLES --- */
+/* Expandable Details Section */
+.details-content {
+  display: none; /* Hidden by default */
+  background: var(--bg-alt);
+  border-radius: 6px;
+  padding: 1.2rem;
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+.details-content ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+.details-content li { margin-bottom: 0.5rem; }
+.details-content strong { color: var(--text); }
+
+/* PDF Modal */
 .modal-overlay {
-  display: none; 
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(26, 26, 26, 0.85);
-  backdrop-filter: blur(5px);
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(26, 26, 26, 0.85); backdrop-filter: blur(5px); z-index: 9999;
+  align-items: center; justify-content: center; padding: 2rem;
 }
 .modal-content {
-  background: var(--bg);
-  width: 100%;
-  max-width: 800px;
-  max-height: 90vh;
-  border-radius: 8px;
-  box-shadow: var(--shadow-lg);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  position: relative;
-  animation: modalFadeIn 0.3s ease;
+  background: var(--bg); width: 100%; max-width: 1000px; height: 90vh;
+  border-radius: 8px; box-shadow: var(--shadow-lg); display: flex;
+  flex-direction: column; overflow: hidden; animation: modalFadeIn 0.3s ease;
 }
-.modal-content.pdf-viewer { max-width: 1000px; height: 90vh; }
-
-@keyframes modalFadeIn {
-  from { opacity: 0; transform: translateY(20px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
+@keyframes modalFadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
 .modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  background: var(--card-bg);
-  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 1.5rem; background: var(--card-bg); border-bottom: 1px solid var(--border);
 }
-.modal-title {
-  font-family: var(--serif);
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--text);
-}
-.modal-close {
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: color 0.2s;
-}
+.modal-title { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; color: var(--text); }
+.modal-close { background: transparent; border: none; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; transition: color 0.2s; }
 .modal-close:hover { color: #c0392b; }
-.modal-body { flex: 1; background: var(--bg); overflow-y: auto; padding: 1.5rem; }
-.modal-body iframe { width: 100%; height: 100%; border: none; background: #525659; }
-/* -------------------------- */
+.modal-body { flex: 1; background: #525659; }
+.modal-body iframe { width: 100%; height: 100%; border: none; }
 
 footer{border-top:1px solid var(--border);padding:2.5rem 0;text-align:center;font-size:.85rem;color:var(--text-muted)}
 footer a{color:var(--accent);text-decoration:none}
@@ -140,7 +119,6 @@ footer a{color:var(--accent);text-decoration:none}
 </header>
 
 <main>
-
   <section class="page-hero">
     <div class="container">
       <div class="page-eyebrow">Information Systems Student</div>
@@ -157,22 +135,14 @@ footer a{color:var(--accent);text-decoration:none}
           I am a dedicated and curious IT student with a passion for technology, problem-solving, and continuous learning. I enjoy exploring areas like programming, software development, and emerging technologies such as artificial intelligence.
         </p>
         <p>With a strong foundation in IT concepts and hands-on project experience, I aim to apply my knowledge in real-world situations while constantly expanding my skill set.</p>
-
         <h3 style="font-family:var(--serif);font-size:1.4rem;color:var(--text);margin:2rem 0 .8rem;">Technical Skills</h3>
         <div class="tags">
-          <span class="tag">Python</span>
-          <span class="tag">C++</span>
-          <span class="tag">Java</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">ML / AI</span>
-          <span class="tag">Data Analysis</span>
+          <span class="tag">Python</span><span class="tag">C++</span><span class="tag">Java</span><span class="tag">JavaScript</span><span class="tag">ML / AI</span><span class="tag">Data Analysis</span>
         </div>
-
         <h3 style="font-family:var(--serif);font-size:1.4rem;color:var(--text);margin:2rem 0 .8rem;">Education</h3>
         <p style="margin-bottom:.4rem;"><strong>Bachelors in Information System</strong></p>
         <p style="margin-bottom:.4rem;">Riga Nordic University · Riga, Latvia</p>
         <p><em>June 2024 – Present</em> | EQF Level 8</p>
-
         <h3 style="font-family:var(--serif);font-size:1.4rem;color:var(--text);margin:2rem 0 .8rem;">Languages</h3>
         <ul style="list-style:none;">
           <li style="margin-bottom:.4rem;"><strong>Malayalam:</strong> Mother tongue</li>
@@ -187,31 +157,23 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="section-head"><span class="num">02</span><h2>Featured Projects</h2></div>
       <div class="grid">
 
-        <!-- Smart Home IoT Prototype -->
         <div class="card">
           <h3>Smart Home IoT Prototype</h3>
           <p>Virtual IoT prototype for Robotics subject. Features automatic light control with PIR motion sensor, temperature-based fan control, and remote control simulation.</p>
           <div class="tags">
-            <span class="tag">Arduino</span>
-            <span class="tag">IoT</span>
-            <span class="tag">Wokwi</span>
+            <span class="tag">Arduino</span><span class="tag">IoT</span><span class="tag">Wokwi</span>
           </div>
           <a href="#" class="btn btn-primary">View Details <i class="fas fa-arrow-right"></i></a>
         </div>
 
-        <!-- The Odin Project -->
         <div class="card">
           <h3>The Odin Project</h3>
           <p>Full-stack web development curriculum covering HTML, CSS, JavaScript, Node.js, React, and databases.</p>
           <div class="tags">
-            <span class="tag">HTML/CSS</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">Node.js</span>
-            <span class="tag">React</span>
+            <span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">Node.js</span><span class="tag">React</span>
           </div>
 
           <div class="presentation-list">
-            <!-- PDF 1 -->
             <div class="presentation-item">
               <span class="presentation-name"><i class="fas fa-file-pdf" style="color:#c0392b;"></i> Advanced HTML & CSS</span>
               <div class="presentation-buttons">
@@ -219,8 +181,6 @@ footer a{color:var(--accent);text-decoration:none}
                 <a href="presentations/advanced-html-css.pdf" download class="btn btn-ghost btn-sm"><i class="fas fa-download"></i> Save</a>
               </div>
             </div>
-            
-            <!-- PDF 2 -->
             <div class="presentation-item">
               <span class="presentation-name"><i class="fas fa-file-pdf" style="color:#c0392b;"></i> Intermediate HTML & CSS</span>
               <div class="presentation-buttons">
@@ -228,8 +188,6 @@ footer a{color:var(--accent);text-decoration:none}
                 <a href="presentations/intermediate-html-css.pdf" download class="btn btn-ghost btn-sm"><i class="fas fa-download"></i> Save</a>
               </div>
             </div>
-
-            <!-- PDF 3 -->
             <div class="presentation-item">
               <span class="presentation-name"><i class="fas fa-file-pdf" style="color:#c0392b;"></i> Modern JavaScript</span>
               <div class="presentation-buttons">
@@ -237,8 +195,6 @@ footer a{color:var(--accent);text-decoration:none}
                 <a href="presentations/modern-javascript.pdf" download class="btn btn-ghost btn-sm"><i class="fas fa-download"></i> Save</a>
               </div>
             </div>
-
-            <!-- PDF 4 -->
             <div class="presentation-item">
               <span class="presentation-name"><i class="fas fa-file-pdf" style="color:#c0392b;"></i> Odin Foundations</span>
               <div class="presentation-buttons">
@@ -248,10 +204,24 @@ footer a{color:var(--accent);text-decoration:none}
             </div>
           </div>
 
-          <!-- UPDATED VIEW DETAILS BUTTON -->
-          <button onclick="openDetails()" class="btn btn-ghost" style="width: 100%; justify-content: space-between;">View Details <i class="fas fa-arrow-right"></i></button>
-        </div>
+          <!-- View Details Button that expands the text directly below it -->
+          <button onclick="toggleDetails()" class="btn btn-ghost" style="width: 100%; justify-content: space-between;">
+            View Details <i class="fas fa-chevron-down" id="detailsIcon"></i>
+          </button>
+          
+          <!-- Hidden Details Box -->
+          <div id="detailsBox" class="details-content">
+            <p><strong>What is The Odin Project?</strong></p>
+            <p style="margin-bottom: 1rem;">It is a comprehensive, open-source full-stack curriculum. Below is what Shon has covered in the included presentations:</p>
+            <ul>
+              <li><strong>Advanced HTML & CSS:</strong> Deep dive into CSS animations, accessibility (WCAG), and responsive design.</li>
+              <li><strong>Intermediate HTML & CSS:</strong> Mastering CSS Grid, Flexbox, forms, and SVG layouts.</li>
+              <li><strong>Modern JavaScript:</strong> Interactive web apps, OOP, APIs, and automated testing.</li>
+              <li><strong>Odin Foundations:</strong> Environment setup, Git, HTML structure, and core JavaScript logic.</li>
+            </ul>
+          </div>
 
+        </div>
       </div>
     </div>
   </section>
@@ -260,65 +230,23 @@ footer a{color:var(--accent);text-decoration:none}
     <div class="container">
       <div class="section-head"><span class="num">03</span><h2>Certifications</h2></div>
       <div class="grid">
-        <div class="card">
-          <h3>Diploma in C Programming</h3>
-          <p>Alison · May 2025</p>
-        </div>
-        <div class="card">
-          <h3>AI Capstone: Deep Learning</h3>
-          <p>IBM / Coursera · May 2025</p>
-        </div>
-        <div class="card">
-          <h3>Java Certificate</h3>
-          <p>Certified · 2025</p>
-        </div>
+        <div class="card"><h3>Diploma in C Programming</h3><p>Alison · May 2025</p></div>
+        <div class="card"><h3>AI Capstone: Deep Learning</h3><p>IBM / Coursera · May 2025</p></div>
+        <div class="card"><h3>Java Certificate</h3><p>Certified · 2025</p></div>
       </div>
     </div>
   </section>
-
 </main>
 
-<!-- PDF MODAL -->
+<!-- PDF MODAL POPUP -->
 <div id="pdfModal" class="modal-overlay">
-  <div class="modal-content pdf-viewer">
-    <div class="modal-header">
-      <span id="modalTitle" class="modal-title">Presentation</span>
-      <button onclick="closeModal('pdfModal')" class="modal-close" aria-label="Close">&times;</button>
-    </div>
-    <div class="modal-body" style="padding: 0;">
-      <iframe id="pdfFrame" src="" title="PDF Presentation"></iframe>
-    </div>
-  </div>
-</div>
-
-<!-- DETAILS MODAL -->
-<div id="detailsModal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
-      <span class="modal-title">The Odin Project — Details</span>
-      <button onclick="closeModal('detailsModal')" class="modal-close" aria-label="Close">&times;</button>
+      <span id="modalTitle" class="modal-title">Presentation</span>
+      <button onclick="closeModal()" class="modal-close" aria-label="Close">&times;</button>
     </div>
     <div class="modal-body">
-      <p style="margin-bottom: 1.5rem; color: var(--text-soft); font-size: 1.05rem;">The Odin Project is a comprehensive, open-source full-stack curriculum. Shon has completed multiple core modules, documented below in the available presentations:</p>
-      
-      <ul style="list-style: none; display: flex; flex-direction: column; gap: 1.2rem;">
-        <li style="background: var(--card-bg); padding: 1.2rem; border-radius: 6px; border: 1px solid var(--border);">
-          <strong style="color: var(--accent); font-size: 1.1rem;">Advanced HTML & CSS</strong>
-          <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-soft);">Deep dive into CSS animations, accessibility (WCAG), and responsive design principles to build fluid, accessible web layouts.</p>
-        </li>
-        <li style="background: var(--card-bg); padding: 1.2rem; border-radius: 6px; border: 1px solid var(--border);">
-          <strong style="color: var(--accent); font-size: 1.1rem;">Intermediate HTML & CSS</strong>
-          <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-soft);">Mastering CSS Grid, Flexbox, forms, and scalable vector graphics (SVGs) to construct complex, 2D web layouts.</p>
-        </li>
-        <li style="background: var(--card-bg); padding: 1.2rem; border-radius: 6px; border: 1px solid var(--border);">
-          <strong style="color: var(--accent); font-size: 1.1rem;">Modern JavaScript</strong>
-          <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-soft);">Building interactive web apps using OOP, modular code structures, asynchronous programming, APIs, and automated testing.</p>
-        </li>
-        <li style="background: var(--card-bg); padding: 1.2rem; border-radius: 6px; border: 1px solid var(--border);">
-          <strong style="color: var(--accent); font-size: 1.1rem;">Odin Foundations</strong>
-          <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-soft);">The core foundation of web development, covering the environment setup, Git version control, HTML structure, CSS basics, and essential JavaScript logic.</p>
-        </li>
-      </ul>
+      <iframe id="pdfFrame" src="" title="PDF Presentation"></iframe>
     </div>
   </div>
 </div>
@@ -328,7 +256,7 @@ footer a{color:var(--accent);text-decoration:none}
 </footer>
 
 <script>
-  // PDF Modal Logic
+  // PDF Modal Function
   function openPDF(url, title) {
     document.getElementById('pdfFrame').src = url;
     document.getElementById('modalTitle').innerText = title;
@@ -336,40 +264,33 @@ footer a{color:var(--accent);text-decoration:none}
     document.body.style.overflow = 'hidden'; 
   }
 
-  // Details Modal Logic
-  function openDetails() {
-    document.getElementById('detailsModal').style.display = 'flex';
-    document.body.style.overflow = 'hidden'; 
-  }
-
-  // Close Logic (Works for both modals)
-  function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-    if(modalId === 'pdfModal') {
-      document.getElementById('pdfFrame').src = ''; 
-    }
+  function closeModal() {
+    document.getElementById('pdfModal').style.display = 'none';
+    document.getElementById('pdfFrame').src = ''; 
     document.body.style.overflow = 'auto';
   }
 
-  // Close when clicking outside the modal box
-  document.querySelectorAll('.modal-overlay').forEach(overlay => {
-    overlay.addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeModal(this.id);
-      }
-    });
+  document.getElementById('pdfModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
   });
 
-  // Close on Escape key
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      document.querySelectorAll('.modal-overlay').forEach(overlay => {
-        if(overlay.style.display === 'flex') {
-          closeModal(overlay.id);
-        }
-      });
-    }
+    if (e.key === 'Escape' && document.getElementById('pdfModal').style.display === 'flex') closeModal();
   });
+
+  // Toggle Details Section
+  function toggleDetails() {
+    const box = document.getElementById('detailsBox');
+    const icon = document.getElementById('detailsIcon');
+    
+    if (box.style.display === 'block') {
+      box.style.display = 'none';
+      icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+    } else {
+      box.style.display = 'block';
+      icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+    }
+  }
 </script>
 
 </body>
