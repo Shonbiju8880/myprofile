@@ -62,7 +62,7 @@ section{padding:5rem 0;position:relative}
 
 /* --- MODAL POPUP STYLES --- */
 .modal-overlay {
-  display: none; /* Hidden by default */
+  display: none; 
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(26, 26, 26, 0.85);
@@ -75,8 +75,8 @@ section{padding:5rem 0;position:relative}
 .modal-content {
   background: var(--bg);
   width: 100%;
-  max-width: 1000px;
-  height: 90vh;
+  max-width: 800px;
+  max-height: 90vh;
   border-radius: 8px;
   box-shadow: var(--shadow-lg);
   display: flex;
@@ -85,6 +85,8 @@ section{padding:5rem 0;position:relative}
   position: relative;
   animation: modalFadeIn 0.3s ease;
 }
+.modal-content.pdf-viewer { max-width: 1000px; height: 90vh; }
+
 @keyframes modalFadeIn {
   from { opacity: 0; transform: translateY(20px) scale(0.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
@@ -111,19 +113,9 @@ section{padding:5rem 0;position:relative}
   cursor: pointer;
   transition: color 0.2s;
 }
-.modal-close:hover {
-  color: #c0392b;
-}
-.modal-body {
-  flex: 1;
-  background: #525659; /* Dark background behind PDF */
-  width: 100%;
-}
-.modal-body iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
+.modal-close:hover { color: #c0392b; }
+.modal-body { flex: 1; background: var(--bg); overflow-y: auto; padding: 1.5rem; }
+.modal-body iframe { width: 100%; height: 100%; border: none; background: #525659; }
 /* -------------------------- */
 
 footer{border-top:1px solid var(--border);padding:2.5rem 0;text-align:center;font-size:.85rem;color:var(--text-muted)}
@@ -239,24 +231,6 @@ footer a{color:var(--accent);text-decoration:none}
 
             <!-- PDF 3 -->
             <div class="presentation-item">
-              <span class="presentation-name"><i class="fas fa-file-pdf" style="color:#c0392b;"></i> Big Data Exam Answers</span>
-              <div class="presentation-buttons">
-                <button onclick="openPDF('presentations/big-data-exam.pdf', 'Big Data Exam Answers')" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</button>
-                <a href="presentations/big-data-exam.pdf" download class="btn btn-ghost btn-sm"><i class="fas fa-download"></i> Save</a>
-              </div>
-            </div>
-
-            <!-- PDF 4 -->
-            <div class="presentation-item">
-              <span class="presentation-name"><i class="fas fa-file-pdf" style="color:#c0392b;"></i> IoT Exam Short Answers</span>
-              <div class="presentation-buttons">
-                <button onclick="openPDF('presentations/iot-exam.pdf', 'IoT Exam Short Answers')" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</button>
-                <a href="presentations/iot-exam.pdf" download class="btn btn-ghost btn-sm"><i class="fas fa-download"></i> Save</a>
-              </div>
-            </div>
-
-            <!-- PDF 5 -->
-            <div class="presentation-item">
               <span class="presentation-name"><i class="fas fa-file-pdf" style="color:#c0392b;"></i> Modern JavaScript</span>
               <div class="presentation-buttons">
                 <button onclick="openPDF('presentations/modern-javascript.pdf', 'Modern JavaScript')" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</button>
@@ -264,7 +238,7 @@ footer a{color:var(--accent);text-decoration:none}
               </div>
             </div>
 
-            <!-- PDF 6 -->
+            <!-- PDF 4 -->
             <div class="presentation-item">
               <span class="presentation-name"><i class="fas fa-file-pdf" style="color:#c0392b;"></i> Odin Foundations</span>
               <div class="presentation-buttons">
@@ -274,7 +248,8 @@ footer a{color:var(--accent);text-decoration:none}
             </div>
           </div>
 
-          <a href="#" class="btn btn-ghost">View Details <i class="fas fa-arrow-right"></i></a>
+          <!-- UPDATED VIEW DETAILS BUTTON -->
+          <button onclick="openDetails()" class="btn btn-ghost" style="width: 100%; justify-content: space-between;">View Details <i class="fas fa-arrow-right"></i></button>
         </div>
 
       </div>
@@ -303,15 +278,47 @@ footer a{color:var(--accent);text-decoration:none}
 
 </main>
 
-<!-- POPUP MODAL HTML -->
+<!-- PDF MODAL -->
 <div id="pdfModal" class="modal-overlay">
-  <div class="modal-content">
+  <div class="modal-content pdf-viewer">
     <div class="modal-header">
       <span id="modalTitle" class="modal-title">Presentation</span>
-      <button onclick="closePDF()" class="modal-close" aria-label="Close">&times;</button>
+      <button onclick="closeModal('pdfModal')" class="modal-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body" style="padding: 0;">
+      <iframe id="pdfFrame" src="" title="PDF Presentation"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- DETAILS MODAL -->
+<div id="detailsModal" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="modal-title">The Odin Project — Details</span>
+      <button onclick="closeModal('detailsModal')" class="modal-close" aria-label="Close">&times;</button>
     </div>
     <div class="modal-body">
-      <iframe id="pdfFrame" src="" title="PDF Presentation"></iframe>
+      <p style="margin-bottom: 1.5rem; color: var(--text-soft); font-size: 1.05rem;">The Odin Project is a comprehensive, open-source full-stack curriculum. Shon has completed multiple core modules, documented below in the available presentations:</p>
+      
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 1.2rem;">
+        <li style="background: var(--card-bg); padding: 1.2rem; border-radius: 6px; border: 1px solid var(--border);">
+          <strong style="color: var(--accent); font-size: 1.1rem;">Advanced HTML & CSS</strong>
+          <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-soft);">Deep dive into CSS animations, accessibility (WCAG), and responsive design principles to build fluid, accessible web layouts.</p>
+        </li>
+        <li style="background: var(--card-bg); padding: 1.2rem; border-radius: 6px; border: 1px solid var(--border);">
+          <strong style="color: var(--accent); font-size: 1.1rem;">Intermediate HTML & CSS</strong>
+          <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-soft);">Mastering CSS Grid, Flexbox, forms, and scalable vector graphics (SVGs) to construct complex, 2D web layouts.</p>
+        </li>
+        <li style="background: var(--card-bg); padding: 1.2rem; border-radius: 6px; border: 1px solid var(--border);">
+          <strong style="color: var(--accent); font-size: 1.1rem;">Modern JavaScript</strong>
+          <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-soft);">Building interactive web apps using OOP, modular code structures, asynchronous programming, APIs, and automated testing.</p>
+        </li>
+        <li style="background: var(--card-bg); padding: 1.2rem; border-radius: 6px; border: 1px solid var(--border);">
+          <strong style="color: var(--accent); font-size: 1.1rem;">Odin Foundations</strong>
+          <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-soft);">The core foundation of web development, covering the environment setup, Git version control, HTML structure, CSS basics, and essential JavaScript logic.</p>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
@@ -320,33 +327,47 @@ footer a{color:var(--accent);text-decoration:none}
   <p>© 2026 Shon Biju · Riga, Latvia</p>
 </footer>
 
-<!-- POPUP JAVASCRIPT -->
 <script>
+  // PDF Modal Logic
   function openPDF(url, title) {
     document.getElementById('pdfFrame').src = url;
     document.getElementById('modalTitle').innerText = title;
     document.getElementById('pdfModal').style.display = 'flex';
-    // Prevent background scrolling
     document.body.style.overflow = 'hidden'; 
   }
 
-  function closePDF() {
-    document.getElementById('pdfModal').style.display = 'none';
-    document.getElementById('pdfFrame').src = ''; // Stop loading the PDF in background
+  // Details Modal Logic
+  function openDetails() {
+    document.getElementById('detailsModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden'; 
+  }
+
+  // Close Logic (Works for both modals)
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+    if(modalId === 'pdfModal') {
+      document.getElementById('pdfFrame').src = ''; 
+    }
     document.body.style.overflow = 'auto';
   }
 
   // Close when clicking outside the modal box
-  document.getElementById('pdfModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-      closePDF();
-    }
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal(this.id);
+      }
+    });
   });
 
   // Close on Escape key
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && document.getElementById('pdfModal').style.display === 'flex') {
-      closePDF();
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        if(overlay.style.display === 'flex') {
+          closeModal(overlay.id);
+        }
+      });
     }
   });
 </script>
