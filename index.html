@@ -14,6 +14,7 @@
   --accent:#8b6f47;--accent-soft:#c9a97a;
   --border:#e2ddd2;--border-strong:#cfc7b7;
   --shadow-md:0 10px 30px -10px rgba(60,50,30,.12);
+  --shadow-lg:0 24px 60px -20px rgba(60,50,30,.25);
   --serif:'Cormorant Garamond',Georgia,serif;
   --sans:'Inter',sans-serif;
 }
@@ -52,17 +53,83 @@ section{padding:5rem 0;position:relative}
 .btn-ghost{background:transparent;color:var(--text);border-color:var(--border-strong)}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
 
-/* Presentation Layout */
+/* Presentation List */
 .presentation-list{display:flex;flex-direction:column;gap:.8rem;margin:1rem 0 1.5rem;background:var(--bg-alt);padding:1rem;border-radius:6px;border:1px solid var(--border);}
 .presentation-item{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;}
 .presentation-name{font-size:.85rem;font-weight:500;color:var(--text);}
 .presentation-buttons{display:flex;gap:.4rem;}
 .btn-sm{padding:.45rem .8rem;font-size:.72rem;}
 
+/* --- MODAL POPUP STYLES --- */
+.modal-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(26, 26, 26, 0.85);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+.modal-content {
+  background: var(--bg);
+  width: 100%;
+  max-width: 1000px;
+  height: 90vh;
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  animation: modalFadeIn 0.3s ease;
+}
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+}
+.modal-title {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.modal-close:hover {
+  color: #c0392b;
+}
+.modal-body {
+  flex: 1;
+  background: #525659; /* Dark background behind PDF */
+  width: 100%;
+}
+.modal-body iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+/* -------------------------- */
+
 footer{border-top:1px solid var(--border);padding:2.5rem 0;text-align:center;font-size:.85rem;color:var(--text-muted)}
 footer a{color:var(--accent);text-decoration:none}
 @media(max-width:860px){.nav-links{display:none}section{padding:3.5rem 0}}
-@media(max-width:480px){.container{padding:0 1.2rem}.top-bar-inner{padding:.8rem 1.2rem}.presentation-item{flex-direction:column;align-items:flex-start;}}
+@media(max-width:480px){.container{padding:0 1.2rem}.top-bar-inner{padding:.8rem 1.2rem}.presentation-item{flex-direction:column;align-items:flex-start;}.modal-overlay{padding: 1rem;}.modal-content{height: 95vh;}}
 </style>
 </head>
 <body>
@@ -140,7 +207,7 @@ footer a{color:var(--accent);text-decoration:none}
           <a href="#" class="btn btn-primary">View Details <i class="fas fa-arrow-right"></i></a>
         </div>
 
-        <!-- The Odin Project — WITH ALL 6 PRESENTATIONS -->
+        <!-- The Odin Project -->
         <div class="card">
           <h3>The Odin Project</h3>
           <p>Full-stack web development curriculum covering HTML, CSS, JavaScript, Node.js, React, and databases.</p>
@@ -156,7 +223,7 @@ footer a{color:var(--accent);text-decoration:none}
             <div class="presentation-item">
               <span class="presentation-name"><i class="fas fa-file-pdf" style="color:#c0392b;"></i> Advanced HTML & CSS</span>
               <div class="presentation-buttons">
-                <a href="presentations/advanced-html-css.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</a>
+                <button onclick="openPDF('presentations/advanced-html-css.pdf', 'Advanced HTML & CSS')" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</button>
                 <a href="presentations/advanced-html-css.pdf" download class="btn btn-ghost btn-sm"><i class="fas fa-download"></i> Save</a>
               </div>
             </div>
@@ -165,7 +232,7 @@ footer a{color:var(--accent);text-decoration:none}
             <div class="presentation-item">
               <span class="presentation-name"><i class="fas fa-file-pdf" style="color:#c0392b;"></i> Intermediate HTML & CSS</span>
               <div class="presentation-buttons">
-                <a href="presentations/intermediate-html-css.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</a>
+                <button onclick="openPDF('presentations/intermediate-html-css.pdf', 'Intermediate HTML & CSS')" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</button>
                 <a href="presentations/intermediate-html-css.pdf" download class="btn btn-ghost btn-sm"><i class="fas fa-download"></i> Save</a>
               </div>
             </div>
@@ -174,7 +241,7 @@ footer a{color:var(--accent);text-decoration:none}
             <div class="presentation-item">
               <span class="presentation-name"><i class="fas fa-file-pdf" style="color:#c0392b;"></i> Big Data Exam Answers</span>
               <div class="presentation-buttons">
-                <a href="presentations/big-data-exam.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</a>
+                <button onclick="openPDF('presentations/big-data-exam.pdf', 'Big Data Exam Answers')" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</button>
                 <a href="presentations/big-data-exam.pdf" download class="btn btn-ghost btn-sm"><i class="fas fa-download"></i> Save</a>
               </div>
             </div>
@@ -183,25 +250,25 @@ footer a{color:var(--accent);text-decoration:none}
             <div class="presentation-item">
               <span class="presentation-name"><i class="fas fa-file-pdf" style="color:#c0392b;"></i> IoT Exam Short Answers</span>
               <div class="presentation-buttons">
-                <a href="presentations/iot-exam.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</a>
+                <button onclick="openPDF('presentations/iot-exam.pdf', 'IoT Exam Short Answers')" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</button>
                 <a href="presentations/iot-exam.pdf" download class="btn btn-ghost btn-sm"><i class="fas fa-download"></i> Save</a>
               </div>
             </div>
 
-            <!-- PDF 5 (NEW) -->
+            <!-- PDF 5 -->
             <div class="presentation-item">
               <span class="presentation-name"><i class="fas fa-file-pdf" style="color:#c0392b;"></i> Modern JavaScript</span>
               <div class="presentation-buttons">
-                <a href="presentations/modern-javascript.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</a>
+                <button onclick="openPDF('presentations/modern-javascript.pdf', 'Modern JavaScript')" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</button>
                 <a href="presentations/modern-javascript.pdf" download class="btn btn-ghost btn-sm"><i class="fas fa-download"></i> Save</a>
               </div>
             </div>
 
-            <!-- PDF 6 (NEW) -->
+            <!-- PDF 6 -->
             <div class="presentation-item">
               <span class="presentation-name"><i class="fas fa-file-pdf" style="color:#c0392b;"></i> Odin Foundations</span>
               <div class="presentation-buttons">
-                <a href="presentations/odin-foundations.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</a>
+                <button onclick="openPDF('presentations/odin-foundations.pdf', 'Odin Foundations')" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</button>
                 <a href="presentations/odin-foundations.pdf" download class="btn btn-ghost btn-sm"><i class="fas fa-download"></i> Save</a>
               </div>
             </div>
@@ -236,9 +303,53 @@ footer a{color:var(--accent);text-decoration:none}
 
 </main>
 
+<!-- POPUP MODAL HTML -->
+<div id="pdfModal" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span id="modalTitle" class="modal-title">Presentation</span>
+      <button onclick="closePDF()" class="modal-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <iframe id="pdfFrame" src="" title="PDF Presentation"></iframe>
+    </div>
+  </div>
+</div>
+
 <footer>
   <p>© 2026 Shon Biju · Riga, Latvia</p>
 </footer>
+
+<!-- POPUP JAVASCRIPT -->
+<script>
+  function openPDF(url, title) {
+    document.getElementById('pdfFrame').src = url;
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('pdfModal').style.display = 'flex';
+    // Prevent background scrolling
+    document.body.style.overflow = 'hidden'; 
+  }
+
+  function closePDF() {
+    document.getElementById('pdfModal').style.display = 'none';
+    document.getElementById('pdfFrame').src = ''; // Stop loading the PDF in background
+    document.body.style.overflow = 'auto';
+  }
+
+  // Close when clicking outside the modal box
+  document.getElementById('pdfModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closePDF();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('pdfModal').style.display === 'flex') {
+      closePDF();
+    }
+  });
+</script>
 
 </body>
 </html>
