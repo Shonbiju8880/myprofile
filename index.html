@@ -11,12 +11,12 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg: #F8F7F3;        /* Soft warm cream */
-  --bg-alt: #F0EFE9;    /* Slightly darker cream */
+  --bg: #F8F7F3;        
+  --bg-alt: #F0EFE9;    
   --card: #FFFFFF;
-  --text-main: #2D312E; /* Soft dark green/grey */
-  --text-soft: #5C635E; /* Muted sage */
-  --accent: #6C826B;    /* Calming forest green */
+  --text-main: #2D312E; 
+  --text-soft: #5C635E; 
+  --accent: #6C826B;    
   --accent-light: #E3EAE3;
   --border: #E5E2D9;
   --shadow: 0 10px 40px -10px rgba(45, 49, 46, 0.08);
@@ -28,7 +28,7 @@ body{font-family:'DM Sans', sans-serif;background:var(--bg);color:var(--text-mai
 .container{max-width:1100px;margin:0 auto;padding:0 2rem}
 section{padding:6rem 0;position:relative}
 
-/* UPDATED TOP BAR FOR SHON */
+/* UPDATED TOP BAR */
 .top-bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(248, 247, 243, 0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
 .top-bar-inner{max-width:1300px;margin:0 auto;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;gap:1.5rem}
 .brand{font-family:'Playfair Display', serif;font-size:1.5rem;font-weight:600;color:var(--text-main);text-decoration:none;letter-spacing:-0.02em;white-space:nowrap;}
@@ -128,14 +128,14 @@ footer a:hover{text-decoration:underline;}
 </head>
 <body>
 
-<!-- UPDATED TOP BAR WITH ALL LINKS -->
 <header class="top-bar">
   <div class="top-bar-inner">
     <a href="index.html" class="brand">Shon <span>·</span> Biju</a>
     <nav>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="odin.html">Odin</a></li>
+        <!-- Changed Odin link to scroll to the presentation card -->
+        <li><a href="#odin-project">Odin</a></li>
         <li><a href="class-activities.html">Activities</a></li>
         <li><a href="homeworks.html">Homeworks</a></li>
         <li><a href="#portfolio">Projects</a></li>
@@ -152,7 +152,6 @@ footer a:hover{text-decoration:underline;}
   <section class="page-hero" id="about">
     <div class="container" style="display: flex; flex-direction: column; align-items: center;">
       
-      <!-- SHON'S PROFILE IMAGE -->
       <div class="profile-img-wrap">
         <img src="profile.jpeg" alt="Shon Biju" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Shon+Biju&background=E3EAE3&color=6C826B&size=160'">
       </div>
@@ -212,8 +211,8 @@ footer a:hover{text-decoration:underline;}
           <a href="#" class="btn btn-primary">View Details <i class="fas fa-arrow-right"></i></a>
         </div>
 
-        <!-- Odin Project -->
-        <div class="card">
+        <!-- Odin Project (Added ID here so the nav link scrolls to it) -->
+        <div class="card" id="odin-project">
           <h3>The Odin Project</h3>
           <p>Full-stack web development curriculum covering HTML, CSS, JavaScript, Node.js, React, and databases.</p>
           <div class="tags">
